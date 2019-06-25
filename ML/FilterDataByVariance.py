@@ -36,7 +36,8 @@ def main():
         Y_list = list(np.array(Y.T)[0])
         Y_list_uniq = list(set(Y_list))
         P = round(float(Y_list.count(Y_list_uniq[0]))/len(Y_list), 2)
-        threshold = P*(1-P)
+#        threshold = P*(1-P)
+        threshold = 0.01
     else:
         threshold = 0.5
     VarianceThresholdSelector(pd_data, threshold).to_csv('FeatureFilterByVariance.txt',\

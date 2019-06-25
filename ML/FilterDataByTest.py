@@ -31,6 +31,8 @@ def ClassifyContinusTest(X, Y):
     df_filter.to_csv('FeatureFilterByTest.txt', sep='\t', header=True, index=True)
 
 def ClassifyBinaryTest(X, Y):
+    print X.shape
+    print Y.shape
     assert X.shape[0] == Y.shape[0]
     X_T = X.T
 #    chi2_p = HpTest.GetBinaryTest(X.T, Y, 'chi2')

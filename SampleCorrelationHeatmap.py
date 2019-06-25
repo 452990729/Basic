@@ -78,7 +78,7 @@ def main():
                                 'minkowski', 'seuclidean', 'sqeuclidean'],\
                                 default='correlation')
 
-    parser.add_argument('--orientation', help='input orientation of input',\
+    parser.add_argument('--orientation', help='input orientation of input, sample must be at rows',\
                        choices=['row', 'col'], default='row')
     parser.add_argument('--pheatmap', help='input pheatmap parameter')
     argv=vars(parser.parse_args())

@@ -37,6 +37,8 @@ def GetContinusTest(pd1, pd2, test):
     return pd_r
 
 def GetBinaryTest(pd1, pd2, test):
+    print pd1.shape
+    print pd2.shape
     assert pd1.shape[1] == pd2.shape[0]
     length = pd1.shape[0]
     pd_r = pd.DataFrame(index=pd1.index ,columns=['Values'])
