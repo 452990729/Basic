@@ -8,6 +8,7 @@ import argparse
 import numpy as np
 import pandas as pd
 from scipy.spatial import distance
+from scipy.stats import pearsonr
 
 def Dist(array1, array2, dist):
     if dist == 'braycurtis':
@@ -22,7 +23,9 @@ def Dist(array1, array2, dist):
         return distance.seuclidean(array1, array2)
     elif dist == 'sqeuclidean':
         return distance.sqeuclidean(array1, array2)
-
+    elif dist == 'pearson':
+        r,p = pearsonr(array1, array2)
+        return p
 
 def GetMitrix(file1, file2, dist, control):
     pd1 = pd.read_csv(file1, sep='\t', header=0, index_col=0)
@@ -71,19 +74,19 @@ def Heatmap(dict_pht):
 
 def main():
     parser = argparse.ArgumentParser(description="Sample Correlation")
-    parser.add_argument('--f1', help='input file1', required=True)
-    parser.add_argument('--f2', help='input file2')
-    parser.add_argument('--dist', help='input distance method',\
+    parser.add_argument('-f', help='input file1', required=True)
+    parser.add_argument('-f2', help='input file2')
+    parser.add_argument('-dist', help='input distance method',\
                         choices=['braycurtis', 'correlation', 'mahalanobis',\
-                                'minkowski', 'seuclidean', 'sqeuclidean'],\
+                                'minkowski', 'seuclidean', 'sqeuclidean', 'pearson'],\
                                 default='correlation')
 
-    parser.add_argument('--orientation', help='input orientation of input, sample must be at rows',\
+    parser.add_argument('-orientation', help='input orientation of input, sample must be at rows',\
                        choices=['row', 'col'], default='row')
-    parser.add_argument('--pheatmap', help='input pheatmap parameter')
+    parser.add_argument('-pheatmap', help='input pheatmap parameter')
     argv=vars(parser.parse_args())
     if not argv['f2']:
-        f2 = argv['f1']
+        f2 = argv['f']
     else:
         f2 = argv['f2']
     dict_pht = {}
@@ -92,7 +95,7 @@ def main():
         for line in list_split:
             key, value = re.split(':', line)
             dict_pht[key] = value
-    pd_out = GetMitrix(argv['f1'], f2, argv['dist'], argv['orientation'])
+    pd_out = GetMitrix(argv['f'], f2, argv['dist'], argv['orientation'])
     Heatmap(dict_pht)
 
 

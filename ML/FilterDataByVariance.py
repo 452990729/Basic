@@ -30,6 +30,7 @@ def VarianceThresholdSelector(data, threshold=0.5):
 def main():
     pd_data = ReadData(sys.argv[1])
     pd_var = pd_data.var()
+    pd_var.to_csv('Variance.txt', sep='\t', header=True, index=True)
     PlotVar(pd_var)
     if len(sys.argv) == 3:
         Y = ReadData(sys.argv[2])
@@ -40,6 +41,7 @@ def main():
         threshold = 0.01
     else:
         threshold = 0.5
+    print threshold
     VarianceThresholdSelector(pd_data, threshold).to_csv('FeatureFilterByVariance.txt',\
                                              sep='\t', header=True, index=True)
 

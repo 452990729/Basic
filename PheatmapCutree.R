@@ -15,5 +15,5 @@ row_cluster=cutree(out$tree_row,k=cufoff)
 
 
 write.table(row_cluster, file = outfile, sep='\t', row.names =TRUE, quote = FALSE, col.names=NA)
-
+file.remove('Rplots.pdf')
 
