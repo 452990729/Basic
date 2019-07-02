@@ -50,13 +50,14 @@ def MakePlot(pd_data, dict_class, pca_variance, anno=False):
         pd_sub = pd_data.loc[dict_class[key], :]
         x = pd_sub.iloc[:, 0]
         y = pd_sub.iloc[:, 1]
-        ax.scatter(x, y, c=list_color[m], marker='o',\
+        ax.scatter(x, y, c=[list_color[m], ],  marker='o',\
                     alpha=0.5, edgecolors='none', label=key)
         if anno:
             for i, txt in enumerate(pd_sub.index):
-                ax.annotate(txt, (x[i], y[i]))
+                ax.annotate(txt, (x[i], y[i]), )
+        else:
+            ax.legend(loc='upper right')
         m += 1
-    ax.legend(loc='upper right')
     ax.set_xlabel('PC1: {}%'.format(pca_variance[0]))
     ax.set_ylabel('PC2: {}%'.format(pca_variance[1]))
     plt.savefig('PCA.pdf')
