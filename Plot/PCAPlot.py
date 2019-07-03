@@ -54,7 +54,7 @@ def MakePlot(pd_data, dict_class, pca_variance, anno=False):
                     alpha=0.5, edgecolors='none', label=key)
         if anno:
             for i, txt in enumerate(pd_sub.index):
-                ax.annotate(txt, (x[i], y[i]), )
+                ax.annotate(txt, (x[i], y[i]), fontsize=8)
         else:
             ax.legend(loc='upper right')
         m += 1
