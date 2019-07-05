@@ -16,7 +16,12 @@ from lifelines.statistics import logrank_test
 def HandleSurvalData(file_in):
     pd_data = pd.read_csv(file_in, sep='\t', header=0, index_col=0)
     pd_out = pd_data.loc[:, ['days_to_know', 'status']]
-    return pd_out
+    if pd_out['days_to_know'].median(0) > 200:
+        label = 'days'
+        pd_out.loc[pd_out.days_to_know>1825, ['days_to_know', 'status']] = 1825,0
+    else:
+        lable = 'months'
+    return pd_out, label
 
 def HandleClassData(file_in):
     pd_data = pd.read_csv(file_in, sep='\t', header=0, index_col=0)
@@ -36,8 +41,8 @@ def CalPairPvalue(pd1, pd2):
 #        return str(round(p_value, 2))
         return 'n.s.'
 
-def MakePlot(pd_surval, lb, pd_class=False):
-    plt.style.use('my-paper')
+def MakePlot(pd_surval, lb, time_label, pd_class=False):
+    plt.style.use(['my-paper', 'my-line'])
     fig, axe = plt.subplots(figsize=(10,8))
     kmf = KaplanMeierFitter()
     if type(pd_class) != 'bool':
@@ -62,6 +67,10 @@ def MakePlot(pd_surval, lb, pd_class=False):
     else:
         kmf.fit(pd_surval['days_to_know'], pd_surval['status'])
         kmf.plot(ax=axe, ci_show=False)
+    axe.set_ylim(0, 1)
+    axe.set_yticks([0, 0.25, 0.5, 0.75, 1.0])
+    axe.set_ylabel('Survival Probability')
+    axe.set_xlabel('Time ({})'.format(time_label))
     axe.set_title(lb)
     plt.savefig('{}SurvalPlot.pdf'.format(lb))
 
@@ -71,12 +80,12 @@ def main():
     parser.add_argument('-c', help='cluster file, two lines, label and cluster', default=None)
     parser.add_argument('-t', help='the title of the plot', default='')
     argv=vars(parser.parse_args())
-    pd_surval = HandleSurvalData(argv['s'])
+    pd_surval, time_label = HandleSurvalData(argv['s'])
     if argv['c']:
         pd_class = HandleClassData(argv['c'])
-        MakePlot(pd_surval, argv['t'], pd_class)
+        MakePlot(pd_surval, argv['t'], time_label, pd_class)
     else:
-        MakePlot(pd_surval, argv['t'])
+        MakePlot(pd_surval, argv['t'], time_label)
 
 
 if __name__ == '__main__':

@@ -37,7 +37,7 @@ def HandleData(dict_class, pd_matrix, tp):
 
 def main():
     parser = argparse.ArgumentParser(description="cal mean/median of feature by sample class")
-    parser.add_argument('-c', help='cox result file', required=True)
+    parser.add_argument('-c', help='the sample class file', required=True)
     parser.add_argument('-i', help='the input matrix', required=True)
     parser.add_argument('-m', help='mean or median', choices=['mean', 'median'], default='mean')
     argv=vars(parser.parse_args())
