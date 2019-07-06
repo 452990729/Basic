@@ -1,6 +1,5 @@
 #!/usr/bin/env python2
 
-import sys
 import re
 import random
 import argparse
