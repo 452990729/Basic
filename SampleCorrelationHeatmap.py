@@ -76,7 +76,7 @@ def main():
     parser = argparse.ArgumentParser(description="Sample Correlation")
     parser.add_argument('-f', help='input file1', required=True)
     parser.add_argument('-f2', help='input file2')
-    parser.add_argument('-dist', help='input distance method',\
+    parser.add_argument('-dist', help='input distance method <<correlation>>',\
                         choices=['braycurtis', 'correlation', 'mahalanobis',\
                                 'minkowski', 'seuclidean', 'sqeuclidean', 'pearson'],\
                                 default='correlation')

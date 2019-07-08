@@ -1,3 +1,5 @@
+#!/usr/bin/env Rscript
+
 library('pheatmap')
 argv=commandArgs(TRUE)
 infile <- argv[1]

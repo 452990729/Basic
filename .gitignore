@@ -125,3 +125,6 @@ dmypy.json
 
 # user
 Test/*/
+RNA/DiffAnalysis/htseq-count
+RNA/GSVA
+RNA/gseapy
