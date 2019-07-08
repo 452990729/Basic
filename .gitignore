@@ -128,3 +128,6 @@ Test/*/
 RNA/DiffAnalysis/htseq-count
 RNA/GSVA
 RNA/gseapy
+RNA/GSVA
+RNA/DiffAnalysis/htseq-count
+RNA/gseapy
