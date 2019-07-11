@@ -1,10 +1,10 @@
+#!/usr/bin/env Rscript
 
 library(TCGAbiolinks)
 library(dplyr)
 library(SummarizedExperiment)
 library(argparse)
 
-argv=commandArgs(TRUE)
 parser <- ArgumentParser(description='download data from TCGA')
 parser$add_argument('-t', help='the cancer type, seperate by :,exsample BRCA:GBM. Cancer list<"BRCA","GBM","OV","LUAD","UCEC","KIRC","HNSC","LGG","THCA","LUSC","PRAD","SKCM","COAD","STAD","BLCA","LIHC","CESC","KIRP","SARC","LAML","ESCA","PAAD","PCPG","READ","TGCT","THYM","KICH","ACC","MESO","UVM","DLBC","UCS","CHOL">')
 parser$add_argument('-c', help='download type <RNASeq, miRNA, CNV, meth, clinical>', default='clinical')
