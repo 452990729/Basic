@@ -11,6 +11,8 @@ parser$add_argument('-cluster_rows', help='cluster_rows <<TRUE>>', action='store
 parser$add_argument('-show_colnames', help='show_colnames <<TRUE>>', action='store_true')
 parser$add_argument('-show_rownames', help='show_rownames <<TRUE>>', action='store_true')
 parser$add_argument('-fontsize', help='fontsize <<1>>', type='integer', default=1)
+parser$add_argument('-cellwidth', help='size <<NA>>', default='NA')
+parser$add_argument('-cellheight', help='size <<NA>>', default='NA')
 parser$add_argument('-border', help='have border or not <<TRUE>>', action='store_true')
 parser$add_argument('-annotation_col', help='annotation_col matrix <<NA>>', default='NA')
 parser$add_argument('-annotation_row', help='annotation_rowmatrix <<NA>>', default='NA')
@@ -33,9 +35,19 @@ if(argv$annotation_row=='NA') {
 } else{
         annotation_row <- ReadData(argv$annotation_col)
 }
+if(argv$cellwidth=='NA') {
+    cellwidth <- NA
+} else {
+    cellwidth <- as.numeric(argv$cellwidth)
+}
+if(argv$cellheight=='NA') {
+    cellheight <- NA
+} else {
+    cellheight <- as.numeric(argv$cellheight)
+}
 
 pdf(paste(argv$out, "pdf", sep="."))
-pheatmap_out <- pheatmap(dataExpr, scale=argv$scale, cluster_cols=argv$cluster_cols, cluster_rows = argv$cluster_rows, show_rownames=argv$show_rownames, show_colnames=argv$show_colnames, border=argv$border, fontsize = argv$fontsize, annotation_row=annotation_row, annotation_col=annotation_col)
+pheatmap_out <- pheatmap(dataExpr, scale=argv$scale, cluster_cols=argv$cluster_cols, cluster_rows = argv$cluster_rows, show_rownames=argv$show_rownames, show_colnames=argv$show_colnames, border=argv$border, fontsize = argv$fontsize, cellwidth = cellwidth, cellheight = cellheight, annotation_row=annotation_row, annotation_col=annotation_col)
 dev.off()
 
 if(argv$cluster_cols) {
