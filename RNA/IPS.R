@@ -13,6 +13,10 @@ library(ggplot2)
 library(grid)
 library(gridExtra)
 
+initial.options <- commandArgs(trailingOnly = FALSE)
+file.arg.name <- "--file="
+script.name <- sub(file.arg.name, "", initial.options[grep(file.arg.name, initial.options)])
+script.basename <- dirname(script.name)
 ## calculate Immunophenoscore
 ipsmap<- function (x) {
 	if (x<=0) {
@@ -67,7 +71,7 @@ sample_names<-names(gene_expression)
 
 ## Read IPS genes and corresponding weights from tab-delimited text file "IPS_genes.txt"
 # For different 
-IPSG<-read.table("./IPS_genes.txt",header=TRUE, sep="\t", dec = ".",check.names=FALSE)
+IPSG<-read.table(paste(script.basename, "IPS_genes.txt", sep='/'),header=TRUE, sep="\t", dec = ".",check.names=FALSE)
 unique_ips_genes<-as.vector(unique(IPSG$NAME))
 
 IPS<-NULL

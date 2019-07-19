@@ -16,7 +16,7 @@ def ReadData(file_in):
 
 def PlotVar(pd_var):
     plt.style.use('my-paper')
-    fig, ax = plt.subplots()
+    fig, ax = plt.subplots(figsize=(10, 10))
     ax.hist(pd_var, 100)
     ax.set_xlabel('Variance')
     ax.set_ylabel('Frequency')
@@ -40,8 +40,7 @@ def main():
 #        threshold = P*(1-P)
         threshold = 0.01
     else:
-        threshold = 0.5
-    print threshold
+        threshold = 0.01
     VarianceThresholdSelector(pd_data, threshold).to_csv('FeatureFilterByVariance.txt',\
                                              sep='\t', header=True, index=True)
 

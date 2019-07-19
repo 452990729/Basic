@@ -17,7 +17,7 @@ def HandleID(file_in):
     list_out = []
     with open(file_in, 'r') as f:
         for line in f:
-            line = line.strip('\m')
+            line = line.strip('\n')
             list_split = re.split('\t', line)
             if list_split[0] != '':
                 list_out.append(list_split[0])
@@ -31,6 +31,7 @@ def ExtractData(pd_data, list_id, colname, col=False):
             pd_out = pd_data.loc[pd_data[colname].isin(list_id)]
         else:
             pd_out = pd_data.loc[list_id, :]
+    pd_out = pd_out.dropna(axis=0, how='all')
     pd_out.to_csv('ExtractData.txt', sep='\t', header=True, index=True)
 
 def main():

@@ -1,12 +1,14 @@
 #!/usr/bin/env python2
 
 
+import os
 import re
 import argparse
 import pandas as pd
 from HTSeq import GFF_Reader
 
-Hg19 = '/PROJECT/home/lixuefei/Database/Mode/hsa/hg19/hg19.gene.gtf'
+BasePath = os.path.split(os.path.realpath(__file__))[0]
+Hg19 = BasePath+'/../../Database/Mode/hsa/hg19/hg19.gene.gtf'
 
 
 def ReadGff(GFF):

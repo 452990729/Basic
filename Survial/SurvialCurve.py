@@ -13,12 +13,13 @@ from lifelines import KaplanMeierFitter
 from lifelines.statistics import logrank_test
 
 
-def HandleSurvalData(file_in):
+def HandleSurvalData(file_in, trim):
     pd_data = pd.read_csv(file_in, sep='\t', header=0, index_col=0)
     pd_out = pd_data.loc[:, ['OS', 'status']]
     if pd_out['OS'].median(0) > 200:
         label = 'days'
-        pd_out.loc[pd_out.OS>1825, ['OS', 'status']] = 1825,0
+        if trim:
+            pd_out.loc[pd_out.OS>trim, ['OS', 'status']] = trim,0
     else:
         label = 'months'
     return pd_out, label
@@ -34,9 +35,10 @@ def CalPairPvalue(pd1, pd2):
     if p_value <= 0.001:
         return '***'
     elif p_value <= 0.01:
-        return '**'
+#        return '**'
+        return str(round(p_value, 3))
     elif p_value <= 0.05:
-        return '*'
+        return str(round(p_value, 2))
     else:
 #        return str(round(p_value, 2))
         return 'n.s.'
@@ -63,7 +65,7 @@ def MakePlot(pd_surval, lb, time_label, pd_class=False):
         if P_lable.count('VS') == 1:
             P_lable = 'log rank p: '+re.split(':', P_lable)[1]
         axe.plot([], [], ' ', label=P_lable)
-        plt.legend(loc='upper right')
+        plt.legend(loc='lower left')
     else:
         kmf.fit(pd_surval['OS'], pd_surval['status'])
         kmf.plot(ax=axe, ci_show=False)
@@ -79,8 +81,9 @@ def main():
     parser.add_argument('-s', help='input surval file ,include OS and status columns', required=True)
     parser.add_argument('-c', help='cluster file, two lines, label and cluster', default=None)
     parser.add_argument('-t', help='the title of the plot <<>>', default='')
+    parser.add_argument('-trim', help='trim time to cutoff <<>>', type=int, default='')
     argv=vars(parser.parse_args())
-    pd_surval, time_label = HandleSurvalData(argv['s'])
+    pd_surval, time_label = HandleSurvalData(argv['s'], argv['trim'])
     if argv['c']:
         pd_class = HandleClassData(argv['c'])
         MakePlot(pd_surval, argv['t'], time_label, pd_class)

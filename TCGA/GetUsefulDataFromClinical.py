@@ -3,6 +3,7 @@
 
 import os
 import re
+import numpy as np
 import argparse
 import pandas as pd
 
@@ -18,7 +19,7 @@ def GetOS(pd_data):
         days_to_last_follow_up = pd_data['days_to_last_follow_up'].iloc[i]
         days_to_death = pd_data['days_to_death'].iloc[i]
         status = pd_data['vital_status'].iloc[i]
-        if days_to_last_follow_up != 'NA':
+        if days_to_last_follow_up > -1:
             pd_os.iloc[i] = days_to_last_follow_up
         else:
             pd_os.iloc[i] = days_to_death
@@ -42,6 +43,7 @@ def MakeData(pd_data, pd_os, pd_status, outfile):
     pd_out['OS'] = pd_os
     pd_out['status'] = pd_status
     pd_out.index=pd_data['submitter_id']
+    pd_out = pd_out.dropna(subset=['OS', 'status'])
     pd_out.to_csv(outfile, sep='\t', index=True, header=True)
 
 def main():

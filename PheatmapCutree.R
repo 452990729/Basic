@@ -1,21 +1,26 @@
 #!/usr/bin/env Rscript
 
 library('pheatmap')
-argv=commandArgs(TRUE)
-infile <- argv[1]
-outfile <- argv[2]
-cufoff <- argv[3]
+library(argparse)
 
-dataExpr <- read.table(infile, sep='\t', row.names=1, header=T, quote="", comment="", check.names=F)
+parser <- ArgumentParser(description='Cut Heatmap')
+parser$add_argument('-m', help='the input matrix, include header and index')
+parser$add_argument('-scale', help='scale data <<row>>', choices=c('row', 'column', 'none'), default='row')
+parser$add_argument('-cutoff', help='fontsize <<2>>', type='integer', default=2)
+parser$add_argument('-cut_row', help='cut rows <<TRUE>>', action='store_true')
+parser$add_argument('-out', help='output file <<CutTree.txt>>', default='CutTree.txt')
+argv <- parser$parse_args()
 
-out <- pheatmap(dataExpr, scale="none", cluster_cols=TRUE, cluster_rows = TRUE, show_rownames=T, show_colnames=T, border=FALSE, fontsize = 1)
+dataExpr <- read.table(argv$m, sep='\t', row.names=1, header=T, quote="", comment="", check.names=F)
 
-row_cluster=cutree(out$tree_row,k=cufoff)
-#newOrder=dataExpr[out$tree_row$order,]
-#newOrder[,ncol(newOrder)+1]=row_cluster[match(rownames(newOrder),names(row_cluster))]
-#colnames(newOrder)[ncol(newOrder)]="Cluster"
+out <- pheatmap(dataExpr, scale=argv$scale, cluster_cols=TRUE, cluster_rows = TRUE)
 
-
-write.table(row_cluster, file = outfile, sep='\t', row.names =TRUE, quote = FALSE, col.names=NA)
+row_cluster=cutree(out$tree_row,k=argv$cutoff)
+col_cluster=cutree(out$tree_col,k=argv$cutoff)
+if(argv$cut_row) {
+    write.table(row_cluster, file = argv$out, sep='\t', row.names =TRUE, quote = FALSE, col.names=NA)
+} else{
+    write.table(col_cluster, file = argv$out, sep='\t', row.names =TRUE, quote = FALSE, col.names=NA)
+}
 file.remove('Rplots.pdf')
 
