@@ -23,8 +23,8 @@ for (i in request_cancer) {
   clinical <- GDCquery_clinic(project = cancer_type, type = "clinical")
   write.table(clinical,file = paste(cancer_type,"clinical.txt",sep = "-"),sep = "\t",quote = FALSE,col.names=NA)
   }
-  if ("RNASeq" %in% content) {
-  #下载rna-seq的counts数据
+  if ("RNASeqFPKM" %in% content) {
+  #下载rna-seq的FPKM数据
   query <- GDCquery(project = cancer_type, 
                     data.category = "Transcriptome Profiling", 
                     data.type = "Gene Expression Quantification", 
@@ -34,6 +34,17 @@ for (i in request_cancer) {
   expdat <- GDCprepare(query = query)
   count_matrix=assay(expdat)
   write.table(count_matrix,file = paste(cancer_type,"RNAFPKM.txt",sep = "-"),sep = "\t",quote = FALSE,col.names=NA)
+  }
+  if ("RNASeqCount" %in% content) {
+      #下载rna-seq的counts数据
+      query <- GDCquery(project = cancer_type,
+                        data.category = "Transcriptome Profiling",
+                        data.type = "Gene Expression Quantification",
+                        workflow.type = "HTSeq - Counts")
+      GDCdownload(query, method = "api", files.per.chunk = 100)
+      expdat <- GDCprepare(query = query)
+      count_matrix=assay(expdat)
+      write.table(count_matrix,file = paste(cancer_type,"RNACount.txt",sep = "-"),sep = "\t",quote = FALSE,col.names=NA)
   }
   if ("miRNA" %in% content) {
   #下载miRNA数据
@@ -60,12 +71,14 @@ for (i in request_cancer) {
   }
   if ("meth" %in% content) {
   #下载甲基化数据
-  query.met <- GDCquery(project =cancer_type,
+  query <- GDCquery(project =cancer_type,
                         legacy = TRUE,
-                        data.category = "DNA methylation")
-  GDCdownload(query.met, method = "api", files.per.chunk = 300)
+                        data.category = "DNA methylation",
+                        data.type = "Methylation beta value")
+  GDCdownload(query, method = "api", files.per.chunk = 100)
   expdat <- GDCprepare(query = query)
-#  count_matrix=assay(expdat)
-  write.table(expdat,file = paste(cancer_type,"methylation.txt",sep = "-"),sep = "\t",quote = FALSE,col.names=NA)
+  count_matrix=assay(expdat)
+#  write.table(expdat,file = paste(cancer_type,"methylation.txt",sep = "-"),sep = "\t",quote = FALSE,col.names=NA)
+  write.table(count_matrix,file = paste(cancer_type,"methylationmerge.txt",sep = "-"),sep = "\t",quote = FALSE,col.names=NA)
   }
 }

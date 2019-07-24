@@ -33,7 +33,8 @@ def CalPairPvalue(pd1, pd2):
                           event_observed_A=pd1['status'], event_observed_B=pd2['status'])
     p_value = results.p_value
     if p_value <= 0.001:
-        return '***'
+#        return '***'
+        return 'p < 0.001'
     elif p_value <= 0.01:
 #        return '**'
         return str(round(p_value, 3))
@@ -81,7 +82,7 @@ def main():
     parser.add_argument('-s', help='input surval file ,include OS and status columns', required=True)
     parser.add_argument('-c', help='cluster file, two lines, label and cluster', default=None)
     parser.add_argument('-t', help='the title of the plot <<>>', default='')
-    parser.add_argument('-trim', help='trim time to cutoff <<>>', type=int, default='')
+    parser.add_argument('-trim', help='trim time to cutoff <<>>', type=int, default=1825)
     argv=vars(parser.parse_args())
     pd_surval, time_label = HandleSurvalData(argv['s'], argv['trim'])
     if argv['c']:

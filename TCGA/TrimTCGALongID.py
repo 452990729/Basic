@@ -27,7 +27,7 @@ def Trim(pd_data, outfile, row):
 def main():
     parser = argparse.ArgumentParser(description="Trim the TCGA ID to short one(match clinical data)")
     parser.add_argument('-i', help='input File', required=True)
-    parser.add_argument('-row', help='trim the row names or col names <<False>>', default=False)
+    parser.add_argument('-row', help='trim the row names or col names <<False>>', action='store_true')
     parser.add_argument('-o', help='output matrix <<TrimedMatrix.txt>>', default='TrimedMatrix.txt')
     argv=vars(parser.parse_args())
     pd_data = ReadData(argv['i'])

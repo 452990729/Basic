@@ -35,7 +35,7 @@ def MakeData(pd_data, pd_os, pd_status, outfile):
     list_useful = ['year_of_diagnosis', 'primary_diagnosis',\
                   'tumor_stage', 'tissue_or_organ_of_origin',\
                   'days_to_last_follow_up', 'weight', 'bmi',\
-                  'height', 'gender', 'year_of_birth', 'race',\
+                  'height', 'gender', 'age_at_diagnosis', 'race',\
                   'vital_status', 'age_at_index', 'days_to_death',\
                   'treatments_pharmaceutical_treatment_type',\
                   'bcr_patient_barcode', 'disease']

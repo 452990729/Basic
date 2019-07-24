@@ -15,17 +15,28 @@ from lifelines import CoxPHFitter
 
 def HandleSurvalData(file_in):
     pd_data = pd.read_csv(file_in, sep='\t', header=0, index_col=0)
-    pd_out = pd_data.loc[:, ['days_to_know', 'status']]
+    pd_out = pd_data.loc[:, ['OS', 'status']]
     return pd_out
 
 def HandleVarData(file_in):
     pd_data = pd.read_csv(file_in, sep='\t', header=0, index_col=0)
     return pd_data
 
-def CoxAnalysis(df):
+def CoxAnalysis(pd_data, pd_surval, tp):
     cph = CoxPHFitter(penalizer=0.1)
-    cph.fit(df, 'days_to_know', event_col='status')
-    pd_out = cph.summary
+    if tp == 'univariate':
+        pd_out = ''
+        for i in range(pd_data.shape[1]):
+            df = pd_surval.T.append(pd_data.iloc[:,i].T).T
+            cph.fit(df, 'OS', event_col='status', step_size=0.1)
+            if type(pd_out) == str:
+                pd_out = cph.summary
+            else:
+                pd_out=pd_out.append(cph.summary)
+    elif tp == 'multivariable':
+        df = pd_data.T.append(pd_surval.T).T
+        cph.fit(df, 'OS', event_col='status', step_size=0.1)
+        pd_out = cph.summary
     pd_out.to_csv('CoxRegress.txt', sep='\t', header=True, index=True)
     plt.style.use('my-paper')
     fig, axe = plt.subplots(figsize=(10,8))
@@ -34,14 +45,14 @@ def CoxAnalysis(df):
 
 def main():
     parser = argparse.ArgumentParser(description="Cox regression")
-    parser.add_argument('-s', help='input surval file ,include days_to_know and status columns', required=True)
+    parser.add_argument('-s', help='input surval file ,include OS and status columns', required=True)
     parser.add_argument('-c', help='var matrix, var in the columns', required=True)
+    parser.add_argument('-t', help='univariate or multivariable<univariate>>', choices=['univariate', 'multivariable'], default='univariate')
     argv=vars(parser.parse_args())
     pd_surval = HandleSurvalData(argv['s'])
     pd_data = HandleVarData(argv['c'])
-    df = pd_data.T.append(pd_surval.T).T
-    df.drop(df[np.isnan(df['days_to_know'])].index, inplace=True)
-    CoxAnalysis(df)
+    pd_surval = pd_surval.loc[pd_data.index,:]
+    CoxAnalysis(pd_data, pd_surval, argv['t'])
 
 
 if __name__ == '__main__':

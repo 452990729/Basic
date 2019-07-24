@@ -6,11 +6,11 @@ import argparse
 import pandas as pd
 
 
-def ReadTotal(file_in, header=True):
-    if header:
-        pd_data = pd.read_csv(file_in, sep='\t', header=0, index_col=0)
-    else:
+def ReadTotal(file_in, noheader):
+    if noheader:
         pd_data = pd.read_csv(file_in, sep='\t', header=None, index_col=0)
+    else:
+        pd_data = pd.read_csv(file_in, sep='\t', header=0, index_col=0)
     return pd_data
 
 def HandleID(file_in):
@@ -40,9 +40,9 @@ def main():
     parser.add_argument('-i', help='input input id data, more than 1 columns', required=True)
     parser.add_argument('-col', help='extract by clo or by row', action='store_true')
     parser.add_argument('-colname', help='extract row by the col label if false, use index<<False>>', default=False)
-    parser.add_argument('-header', help='input matrix data has header or not <<True>>', default=True)
+    parser.add_argument('-noheader', help='input matrix data has header or not', action='store_true')
     argv=vars(parser.parse_args())
-    pd_data = ReadTotal(argv['m'], argv['header'])
+    pd_data = ReadTotal(argv['m'], argv['noheader'])
     list_id = HandleID(argv['i'])
     ExtractData(pd_data, list_id, argv['colname'], argv['col'])
 
