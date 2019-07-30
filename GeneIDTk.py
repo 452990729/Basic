@@ -86,7 +86,7 @@ def main():
     parser = argparse.ArgumentParser(description="Annotation Genes/Extract subtype")
     parser.add_argument('method', help='the method used extract/anno/switch', choices=['extract', 'anno', 'switch'], nargs=1)
     parser.add_argument('-m', help='input gene matrix, colomns one is Gene ids', required=True)
-    parser.add_argument('-l', help='whether input gene matrix has header <<True>>', default=True)
+    parser.add_argument('-l', help='whether input gene matrix has header <<True>>', action='store_false')
     parser.add_argument('-t', help='extract data type', choices=['LncRNA', 'mRNA', 'sRNA', 'pseudogene', 'miRNA', 'rRNA', 'snoRNA'])
     argv=vars(parser.parse_args())
     pd_data = ReadData(argv['m'], argv['l'])

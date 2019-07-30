@@ -32,6 +32,7 @@ def MakePlot(pd_data, fdr, fold):
     ax.set_ylabel('-log10(Pvalue)')
 #    ax.set_ylim(-0.5, 16)
 #    ax.set_yticks([0, 5, 10, 15])
+    ax.set_xlim(-10, 10)
     box = ax.get_position()
     ax.set_position([box.x0, box.y0, box.width * 0.8, box.height])
     ax.legend(loc='center left', bbox_to_anchor=(1, 0.5), frameon=False)

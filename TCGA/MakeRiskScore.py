@@ -12,7 +12,7 @@ def ReadData(file_in):
     return pd_data
 
 def GetScore(pd_exp, pd_coef, out):
-    pd_exp = pd_exp.loc[pd_coef.index, :].T
+    pd_exp = pd_exp.loc[:,pd_coef.index]
     pd_out = pd.DataFrame(index=pd_exp.index, columns=['RiskScore',])
     for i in range(pd_exp.shape[0]):
         score = 0

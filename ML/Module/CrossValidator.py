@@ -105,7 +105,7 @@ def MakeROC(tp, feature, response, model, test_x=None, test_y=None, fold=5):
     ax.spines['top'].set_visible(True)
     if tp in ['multi', 'bina']:
         for col in response.columns:
-            RunValidator(tp, feature, response.loc[:,col], model, fold, ax)
+            RunValidator(tp, feature, response.loc[:,col], model, fold, ax, col)
     elif tp == 'predict':
         m = 0
         for col in response.columns:
@@ -116,7 +116,7 @@ def MakeROC(tp, feature, response, model, test_x=None, test_y=None, fold=5):
     ax.legend(loc="lower right")
     plt.savefig('{}_ROC.pdf'.format(re.split('\(', str(model))[0]))
 
-def RunValidator(tp, feature, response, model, fold, ax):
+def RunValidator(tp, feature, response, model, fold, ax, lb):
     if tp == 'multi':
         micro_mean_fpr, micro_mean_tpr, micro_auc, macro_mean_fpr, macro_mean_tpr, macro_auc =\
                 MultiClass(feature, response, model, fold=fold)
@@ -124,5 +124,5 @@ def RunValidator(tp, feature, response, model, fold, ax):
         PlotROC(ax, 'macro-average ', 'navy', macro_mean_fpr, macro_mean_tpr, macro_auc)
     elif tp == 'bina':
         mean_fpr, mean_tpr, mean_auc, ci = BinaClass(feature, response, model, fold)
-        PlotROC(ax, '', 'darkorange', mean_fpr, mean_tpr, mean_auc, ci)
+        PlotROC(ax, lb, 'darkorange', mean_fpr, mean_tpr, mean_auc, ci)
 

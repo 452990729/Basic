@@ -23,9 +23,13 @@ def HandleExpData(file_in):
 def ClassDataByMedian(pd_exp, label):
     pd_lb = pd_exp.loc[:, label]
     median = pd_lb.median()
-    pd_up = pd_lb[pd_lb>=median]
+    if median != 0:
+        pd_up = pd_lb[pd_lb>=median]
+        pd_down = pd_lb[pd_lb<median]
+    else:
+        pd_up = pd_lb[pd_lb>0]
+        pd_down = pd_lb[pd_lb<=0]
     pd_up[:] = 'high expression'
-    pd_down = pd_lb[pd_lb<median]
     pd_down[:] = 'low expression'
     pd_all = pd_up.append(pd_down)
     pd_all.to_csv('{}_cluster.txt'.format(label), sep='\t', header=True, index=True)

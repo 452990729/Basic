@@ -2,6 +2,7 @@
 
 library(pheatmap)
 library(argparse)
+library(RColorBrewer)
 
 parser <- ArgumentParser(description='Make Heatmap Plot')
 parser$add_argument('-m', help='the input matrix, include header and index')
@@ -13,6 +14,8 @@ parser$add_argument('-show_rownames', help='show_rownames <<TRUE>>', action='sto
 parser$add_argument('-fontsize', help='fontsize <<1>>', type='integer', default=1)
 parser$add_argument('-cellwidth', help='size <<NA>>', default='NA')
 parser$add_argument('-cellheight', help='size <<NA>>', default='NA')
+parser$add_argument('-breakup', help='value <<NA>>', default='NA')
+parser$add_argument('-breakdown', help='value <<NA>>', default='NA')
 parser$add_argument('-border', help='have border or not <<TRUE>>', action='store_true')
 parser$add_argument('-annotation_col', help='annotation_col matrix <<NA>>', default='NA')
 parser$add_argument('-annotation_row', help='annotation_rowmatrix <<NA>>', default='NA')
@@ -45,9 +48,15 @@ if(argv$cellheight=='NA') {
 } else {
     cellheight <- as.numeric(argv$cellheight)
 }
+if(argv$breakup=='NA') {
+    bk = NA
+} else {
+    bk <- unique(c(seq(as.numeric(argv$breakdown),as.numeric(argv$breakup), length=100)))
+}
 
+color <- colorRampPalette(c('#436eee', 'white', '#EE0000'))(100)
 pdf(paste(argv$out, "pdf", sep="."))
-pheatmap_out <- pheatmap(dataExpr, scale=argv$scale, cluster_cols=argv$cluster_cols, cluster_rows = argv$cluster_rows, show_rownames=argv$show_rownames, show_colnames=argv$show_colnames, border=argv$border, fontsize = argv$fontsize, cellwidth = cellwidth, cellheight = cellheight, annotation_row=annotation_row, annotation_col=annotation_col)
+pheatmap_out <- pheatmap(dataExpr, scale=argv$scale, cluster_cols=argv$cluster_cols, cluster_rows = argv$cluster_rows, show_rownames=argv$show_rownames, show_colnames=argv$show_colnames, border=argv$border, fontsize = argv$fontsize, cellwidth = cellwidth, cellheight = cellheight, annotation_row=annotation_row, annotation_col=annotation_col, color=color, breaks=bk)
 dev.off()
 
 if(argv$cluster_cols) {
