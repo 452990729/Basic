@@ -12,6 +12,7 @@ if(file.exists(outdir)) {
     dir.create(outdir)
     setwd(outdir)
 }
+print(1)
 if(file.exists(argv[2])) {
     result=read.table(argv[2], sep="\t", header = F)
 } else {
@@ -24,6 +25,7 @@ if(length(argv)==3) {
     genetype="SYMBOL"
 }
 entrez_id=mapIds(x=org.Hs.eg.db,keys=genes,keytype=genetype,column ="ENTREZID")
+print(entrez_id)
 entrez_id=na.omit(entrez_id)
 erich.go.ALL=enrichGO(gene=entrez_id,OrgDb=org.Hs.eg.db,keyType="ENTREZID",ont="ALL",pvalueCutoff=0.05,qvalueCutoff=0.05)
 write.csv(summary(erich.go.ALL),paste(basename(outdir), ".G-enrich.csv", sep=""),row.names =F)
