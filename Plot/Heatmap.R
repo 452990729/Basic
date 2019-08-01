@@ -36,7 +36,7 @@ if(argv$annotation_col=='NA') {
 if(argv$annotation_row=='NA') {
         annotation_row <- NA
 } else{
-        annotation_row <- ReadData(argv$annotation_col)
+        annotation_row <- ReadData(argv$annotation_row)
 }
 if(argv$cellwidth=='NA') {
     cellwidth <- NA

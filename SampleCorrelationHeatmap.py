@@ -8,7 +8,7 @@ import argparse
 import numpy as np
 import pandas as pd
 from scipy.spatial import distance
-from scipy.stats import pearsonr
+from scipy.stats import pearsonr,spearmanr
 
 def Dist(array1, array2, dist):
     if dist == 'braycurtis':
@@ -23,9 +23,18 @@ def Dist(array1, array2, dist):
         return distance.seuclidean(array1, array2)
     elif dist == 'sqeuclidean':
         return distance.sqeuclidean(array1, array2)
-    elif dist == 'pearson':
+    elif dist == 'pearsonp':
         r,p = pearsonr(array1, array2)
         return p
+    elif dist == 'pearsonr':
+        r,p = pearsonr(array1, array2)
+        return r
+    elif dist == 'spearmanp':
+         r,p = spearmanr(array1, array2)
+         return p
+    elif dist == 'spearmanr':
+        r,p = spearmanr(array1, array2)
+        return r
 
 def GetMitrix(file1, file2, dist, control):
     pd1 = pd.read_csv(file1, sep='\t', header=0, index_col=0)
@@ -78,7 +87,8 @@ def main():
     parser.add_argument('-f2', help='input file2')
     parser.add_argument('-dist', help='input distance method <<correlation>>',\
                         choices=['braycurtis', 'correlation', 'mahalanobis',\
-                                'minkowski', 'seuclidean', 'sqeuclidean', 'pearson'],\
+                                'minkowski', 'seuclidean', 'sqeuclidean', 'pearsonr',\
+                                'pearsonp', 'spearmanp', 'spearmanr'],\
                                 default='correlation')
 
     parser.add_argument('-orientation', help='input orientation of input, sample must be at rows',\
