@@ -4,6 +4,7 @@
 import numpy as np
 import pandas as pd
 from scipy import stats
+from sklearn.metrics import mutual_info_score
 
 
 def GetCorrelation(pd1, pd2, test):
@@ -42,11 +43,11 @@ def GetBinaryTest(pd1, pd2, test):
     assert pd1.shape[1] == pd2.shape[0]
     length = pd1.shape[0]
     pd_r = pd.DataFrame(index=pd1.index ,columns=['Values'])
-    for i in range(length):
-        a,b,c,d = 0,0,0,0
-        list_1 = list(np.array(pd1.iloc[i, :].T))
-        list_2 = list(np.array(pd2.T)[0])
-        if test == 'fisher':
+    if test == 'fisher':
+        for i in range(length):
+            a,b,c,d = 0,0,0,0
+            list_1 = list(np.array(pd1.iloc[i, :].T))
+            list_2 = list(np.array(pd2.T)[0])
             for m in range(len(list_1)):
                 if list_1[m] == 0 and list_2[m] == 0:
                     a += 1
@@ -59,8 +60,18 @@ def GetBinaryTest(pd1, pd2, test):
             table = np.array([[a,b],[c,d]])
             s, p = stats.fisher_exact(table)
             pd_r.iloc[i] = p
-        elif test == 'chi2':
+    elif test == 'chi2':
+        for i in range(length):
+            a,b,c,d = 0,0,0,0
+            list_1 = list(np.array(pd1.iloc[i, :].T))
+            list_2 = list(np.array(pd2.T)[0])
             s, p = stats.chisquare([list_1.count(0), list_1.count(1)],\
                                     [list_2.count(0), list_2.count(1)])
             pd_r.iloc[i] = p
+    elif test == 'MI':
+        for i in range(length):
+            y = np.array(pd2.loc[pd1.columns,:].T)[0]
+            print y
+            mi = mutual_info_score(pd1.iloc[i, :], y)
+            pd_r.iloc[i] = mi
     return pd_r

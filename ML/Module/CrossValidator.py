@@ -95,6 +95,7 @@ def Predict(feature, response, model):
 
 def MakeROC(tp, feature, response, model, test_x=None, test_y=None, fold=5):
     plt.style.use(['my-paper', 'my-line'])
+    colors = ['darkorange', 'blue', 'red', 'yellow']
     fig, ax = plt.subplots(figsize=(10,8))
     ax.plot([0, 1], [0, 1], '--', color=(0.6, 0.6, 0.6))
     ax.set_xlim([-0.05, 1.05])
@@ -104,19 +105,21 @@ def MakeROC(tp, feature, response, model, test_x=None, test_y=None, fold=5):
     ax.spines['right'].set_visible(True)
     ax.spines['top'].set_visible(True)
     if tp in ['multi', 'bina']:
+        m = 0
         for col in response.columns:
-            RunValidator(tp, feature, response.loc[:,col], model, fold, ax, col)
+            RunValidator(tp, feature, response.loc[:,col], model, fold, ax, col, colors[m])
+            m += 1
     elif tp == 'predict':
         m = 0
         for col in response.columns:
             mbs = model.fit(feature, response.iloc[:,m],)
             fpr, tpr, auc_value, ci = Predict(test_x, test_y.loc[:, col], mbs)
-            PlotROC(ax, col, 'darkorange', fpr, tpr, auc_value, ci)
+            PlotROC(ax, col, colors[m], fpr, tpr, auc_value, ci)
             m += 1
     ax.legend(loc="lower right")
     plt.savefig('{}_ROC.pdf'.format(re.split('\(', str(model))[0]))
 
-def RunValidator(tp, feature, response, model, fold, ax, lb):
+def RunValidator(tp, feature, response, model, fold, ax, lb, color):
     if tp == 'multi':
         micro_mean_fpr, micro_mean_tpr, micro_auc, macro_mean_fpr, macro_mean_tpr, macro_auc =\
                 MultiClass(feature, response, model, fold=fold)
@@ -124,5 +127,5 @@ def RunValidator(tp, feature, response, model, fold, ax, lb):
         PlotROC(ax, 'macro-average ', 'navy', macro_mean_fpr, macro_mean_tpr, macro_auc)
     elif tp == 'bina':
         mean_fpr, mean_tpr, mean_auc, ci = BinaClass(feature, response, model, fold)
-        PlotROC(ax, lb, 'darkorange', mean_fpr, mean_tpr, mean_auc, ci)
+        PlotROC(ax, lb, color, mean_fpr, mean_tpr, mean_auc, ci)
 
