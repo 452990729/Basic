@@ -22,19 +22,42 @@ def GetTtest(list_data):
             s, p = ttest_ind(list_data[i], m)
             print p
 
-def MakePlot(pd_data, title, xlabel, ylabel, swarm, ylim):
+def MakePlot(pd_data, title, xlabel, ylabel, swarm, violin, ylim):
     plt.style.use(['my-paper', 'my-box'])
-    fig, axe = plt.subplots(figsize=(20, 16))
+    fig, axe = plt.subplots(figsize=(6, 15))
     cols = list(pd_data.columns)
+    boxprops = dict(linewidth=4)
+    medianprops = dict(linewidth=6)
+    whiskerprops = dict(linewidth=4)
+    capprops = dict(linewidth=4)
     if len(cols) == 2:
-        sns.boxplot(x='Key', y='Value', data=pd_data)
         if swarm:
-            sns.swarmplot(x='Key', y='Value', data=pd_data)
+            sns.swarmplot(x='Key', y='Value', data=pd_data, size=10)
+            sns.boxplot(x='Key', y='Value', data=pd_data, boxprops=boxprops,
+                        medianprops=medianprops, whiskerprops=whiskerprops, capprops=capprops)
+        elif violin:
+            sns.violinplot(x='Key', y='Value', data=pd_data)
+        else:
+            sns.boxplot(x='Key', y='Value', data=pd_data, boxprops=boxprops,
+                        medianprops=medianprops, whiskerprops=whiskerprops, capprops=capprops)
     elif len(cols) == 3:
-        sns.boxplot(x='Key', y='Value', hue=cols[-1], data=pd_data)
+        title = pd_data.iloc[0,0]
         if swarm:
-            sns.swarmplot(x='Key', y='Value', hue=cols[-1], data=pd_data)
-    axe.set_title(title)
+            sns.boxplot(x=cols[-1], y='Value', data=pd_data, boxprops=boxprops,
+                       medianprops=medianprops, whiskerprops=whiskerprops, capprops=capprops)
+            sns.swarmplot(x=cols[-1], y='Value', data=pd_data, size=10)
+        elif violin:
+            sns.violinplot(x=cols[-1], y='Value', data=pd_data)
+        else:
+            sns.boxplot(x='Key', y='Value', hue=cols[-1], data=pd_data, boxprops=boxprops,
+                       medianprops=medianprops, whiskerprops=whiskerprops, capprops=capprops)
+    for patch in axe.artists:
+        r, g, b, a = patch.get_facecolor()
+        patch.set_facecolor((r, g, b, .5))
+    plt.setp(axe.spines.values(), linewidth=3)
+    axe.yaxis.set_tick_params(width=3, length=10)
+    axe.xaxis.set_tick_params(width=3, length=10)
+    axe.set_title(title, size=30)
     if ylim:
         min_v, max_v=[float(i) for i in re.split(':', ylim)]
     else:
@@ -44,7 +67,8 @@ def MakePlot(pd_data, title, xlabel, ylabel, swarm, ylim):
     axe.set_yticks(axe.get_yticks()[1:-1])
     axe.set_xlabel(xlabel)
     axe.set_ylabel(ylabel)
-    plt.xticks(rotation=40)
+    plt.xticks(size = 30, rotation=40)
+    plt.yticks(size = 30)
     plt.savefig('Boxplot.pdf', dpi=300)
 
 def main():
@@ -55,9 +79,10 @@ def main():
     parser.add_argument('-ylabel', help='the ylable of boxplot', default='')
     parser.add_argument('-ylim', help='the ylim of boxplot , min,max', default='')
     parser.add_argument('-swarm', help='plot swarm', action='store_true')
+    parser.add_argument('-violin', help='plot violin', action='store_true')
     argv=vars(parser.parse_args())
     pd_data = ReadData(argv['i'])
-    MakePlot(pd_data, argv['title'], argv['xlabel'], argv['ylabel'], argv['swarm'], argv['ylim'])
+    MakePlot(pd_data, argv['title'], argv['xlabel'], argv['ylabel'], argv['swarm'], argv['violin'], argv['ylim'])
 
 
 if __name__ == '__main__':

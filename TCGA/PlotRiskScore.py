@@ -31,13 +31,13 @@ def PlotScatter(pd_data, pd_surv, ax):
     for i in range(shape.shape[0]):
         if shape[i] == 0:
             marker = 'o'
-            ci = 'g'
+            ci = 'b'
             ps = ax.scatter(x[i], y[i], marker=marker, color=ci, label='Alive')
             if m == 0:
                 patches.append(ps)
                 m += 1
         elif shape[i] == 1:
-            marker = '^'
+            marker = 'o'
             ci = 'r'
             ps = ax.scatter(x[i], y[i], marker=marker, color=ci, label='Dead')
             if n == 0:
@@ -87,8 +87,8 @@ def PlotHeatmap(pd_data, pd_gene, fig, ax):
 
 def PlotBar(pd_data, ax):
     means = pd_data.shape[0]/2
-    ax.barh([1,], [means,], height=0.1, color='b')
-    ax.barh([1,], [pd_data.shape[0]-means,], height=0.1, left=means, color='r')
+    ax.barh([1,], [means,], height=0.1, color='#2E8B57')
+    ax.barh([1,], [pd_data.shape[0]-means,], height=0.1, left=means, color='#FF4500')
     ax.spines['left'].set_visible(False)
     ax.spines['bottom'].set_visible(False)
     ax.xaxis.set_tick_params(labelbottom=False)

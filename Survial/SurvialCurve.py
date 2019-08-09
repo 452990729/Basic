@@ -43,6 +43,7 @@ def CalPairPvalue(pd1, pd2):
     else:
 #        return str(round(p_value, 2))
         return 'n.s.'
+#        return str(0.05)
 
 def MakePlot(pd_surval, lb, time_label, pd_class=False):
     plt.style.use(['my-paper', 'my-line'])

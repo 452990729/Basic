@@ -39,8 +39,10 @@ def CoxAnalysis(pd_data, pd_surval, tp):
         pd_out = cph.summary
     pd_out.to_csv('CoxRegress.txt', sep='\t', header=True, index=True)
     plt.style.use('my-paper')
-    fig, axe = plt.subplots(figsize=(10,8))
+    fig, axe = plt.subplots(figsize=(25,8))
     cph.plot(ax=axe)
+    axe.set_ylim(-0.2,3.2)
+    axe.set_xlim(-2.5,2.1)
     plt.savefig('CoxRegress.pdf')
 
 def main():
