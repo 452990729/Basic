@@ -22,9 +22,10 @@ def GetTtest(list_data):
             s, p = ttest_ind(list_data[i], m)
             print p
 
-def MakePlot(pd_data, title, xlabel, ylabel, swarm, violin, ylim):
+def MakePlot(pd_data, title, xlabel, ylabel, swarm, violin, ylim, figsize):
     plt.style.use(['my-paper', 'my-box'])
-    fig, axe = plt.subplots(figsize=(6, 15))
+    figsize = [int(i) for i in re.split(':', figsize)]
+    fig, axe = plt.subplots(figsize=(figsize[0], figsize[1]))
     cols = list(pd_data.columns)
     boxprops = dict(linewidth=4)
     medianprops = dict(linewidth=6)
@@ -53,7 +54,7 @@ def MakePlot(pd_data, title, xlabel, ylabel, swarm, violin, ylim):
                        medianprops=medianprops, whiskerprops=whiskerprops, capprops=capprops)
     for patch in axe.artists:
         r, g, b, a = patch.get_facecolor()
-        patch.set_facecolor((r, g, b, .5))
+        patch.set_facecolor((r, g, b, 1))
     plt.setp(axe.spines.values(), linewidth=3)
     axe.yaxis.set_tick_params(width=3, length=10)
     axe.xaxis.set_tick_params(width=3, length=10)
@@ -77,12 +78,13 @@ def main():
     parser.add_argument('-title', help='th title of boxplot', default='')
     parser.add_argument('-xlabel', help='the xlable of boxplot', default='')
     parser.add_argument('-ylabel', help='the ylable of boxplot', default='')
-    parser.add_argument('-ylim', help='the ylim of boxplot , min,max', default='')
+    parser.add_argument('-ylim', help='the ylim of boxplot , min:max', default='')
+    parser.add_argument('-figsize', help='the figsize of boxplot , min:max', default='6:15')
     parser.add_argument('-swarm', help='plot swarm', action='store_true')
     parser.add_argument('-violin', help='plot violin', action='store_true')
     argv=vars(parser.parse_args())
     pd_data = ReadData(argv['i'])
-    MakePlot(pd_data, argv['title'], argv['xlabel'], argv['ylabel'], argv['swarm'], argv['violin'], argv['ylim'])
+    MakePlot(pd_data, argv['title'], argv['xlabel'], argv['ylabel'], argv['swarm'], argv['violin'], argv['ylim'], argv['figsize'])
 
 
 if __name__ == '__main__':

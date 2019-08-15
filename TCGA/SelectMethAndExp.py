@@ -19,15 +19,31 @@ def ReadMeth(file_in):
     return list_up, list_down
 
 def ReadExp(file_in, list_up, list_down):
+    print 'hypomethylated: {}'.format(str(len(list_up)))
+    print 'hypermethylation: {}'.format(str(len(list_down)))
     hypomethylation_high = open('hypomethylation_high.txt', 'w')
     hypermethylated_lower = open('hypermethylated_lower.txt', 'w')
+    m = 0
+    n = 0
+    a = 0
+    b = 0
     with open(file_in, 'r') as f:
         for line in f.readlines()[1:]:
             list_split = re.split('\t', line)
             if float(list_split[2]) > 0 and list_split[0] in list_up:
                 hypermethylated_lower.write(list_split[0]+'\n')
+                m += 1
             elif float(list_split[2]) < 0 and list_split[0] in list_down:
                 hypomethylation_high.write(list_split[0]+'\n')
+                n += 1
+            if float(list_split[2]) > 0:
+                a += 1
+            elif float(list_split[2]) < 0:
+                b += 1
+    print 'Up-exp: {}'.format(str(a))
+    print 'Down-exp: {}'.format(str(b))
+    print 'hypermethylated_lower: {}'.format(str(m))
+    print 'hypomethylation_high: {}'.format(str(n))
     hypomethylation_high.close()
     hypermethylated_lower.close()
 
