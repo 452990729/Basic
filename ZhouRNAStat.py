@@ -26,17 +26,20 @@ def MapStat(file_in):
     return T+'\t'+U+'\t'+R
 
 def main():
-    sample_path = glob(sys.argv[1]+'/*/')
+    sample_path = sorted(glob(sys.argv[1]+'/*/'))
+    print 'Data filtering'
     print ' \tFiltered_Flagment\tTotal_Flagment\tPassed_Flagment\tPassRate(%)'
     for sample in sample_path:
         QC = glob(sample+'/00datafilter/*.trim.err')[0]
         lb = re.split('\/', sample)[-2]
         print lb+'\t'+QCStat(QC)
+    print '\nDuplication rate'
     print ' \tUnique Fragment\tDuplicate\tDuplication Rate(%)'
     for sample in sample_path:
         Dup = glob(sample+'/00datafilter/*.Trim.RD.log')[0]
         lb = re.split('\/', sample)[-2]
         print lb+'\t'+DupStat(Dup)
+    print '\nAlignment'
     print ' \tTotal_Flagment\tAligned_Flagment\tAlignmentRate(%)'
     for sample in sample_path:
         Map = glob(sample+'/01alignment/*.Log.final.out')[0]
