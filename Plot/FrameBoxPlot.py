@@ -66,8 +66,8 @@ def MakePlot(pd_data, title, xlabel, ylabel, swarm, violin, ylim, figsize):
         max_v = pd_data.loc[:,'Value'].max()*1.2
     axe.set_ylim(min_v, max_v)
     axe.set_yticks(axe.get_yticks()[1:-1])
-    axe.set_xlabel(xlabel)
-    axe.set_ylabel(ylabel)
+    axe.set_xlabel(xlabel, size = 40)
+    axe.set_ylabel(ylabel, size = 40)
     plt.xticks(size = 30, rotation=40)
     plt.yticks(size = 30)
     plt.savefig('Boxplot.pdf', dpi=300)

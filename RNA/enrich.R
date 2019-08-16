@@ -9,7 +9,7 @@ library("argparse")
 parser <- ArgumentParser(description='Run deseq2 by readscount')
 parser$add_argument('-f', help='the input gene file, col1 is gene, , requered')
 parser$add_argument('-out', help='output path <<.>>', default='./Enrich')
-parser$add_argument('-type', help='gene name type <<SYMBOL>>', default='SYMBOL')
+parser$add_argument('-type', help='gene name type SYMBOL, ENSEMBL, REFSEQ<<SYMBOL>>', default='SYMBOL')
 argv <- parser$parse_args()
 
 result=read.table(argv$f, sep="\t", header=F, quote="", comment="", check.names=F)
