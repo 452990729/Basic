@@ -23,7 +23,7 @@ def HandleID(file_in):
                 list_out.append(list_split[0])
     return list_out
 
-def ExtractData(pd_data, list_id, colname, col=False):
+def ExtractData(pd_data, list_id, colname, outfile, col=False):
     if col:
         pd_out = pd_data.loc[:, list_id]
     else:
@@ -32,7 +32,7 @@ def ExtractData(pd_data, list_id, colname, col=False):
         else:
             pd_out = pd_data.loc[list_id, :]
     pd_out = pd_out.dropna(axis=0, how='all')
-    pd_out.to_csv('ExtractData.txt', sep='\t', header=True, index=True)
+    pd_out.to_csv(outfile, sep='\t', header=True, index=True)
 
 def main():
     parser = argparse.ArgumentParser(description="extract data by id (col/row)")
@@ -41,10 +41,11 @@ def main():
     parser.add_argument('-col', help='extract by clo or by row', action='store_true')
     parser.add_argument('-colname', help='extract row by the col label if false, use index<<False>>', default=False)
     parser.add_argument('-noheader', help='input matrix data has header or not', action='store_true')
+    parser.add_argument('-o', help='output file<<ExtractData.txt>>', default='ExtractData.txt')
     argv=vars(parser.parse_args())
     pd_data = ReadTotal(argv['m'], argv['noheader'])
     list_id = HandleID(argv['i'])
-    ExtractData(pd_data, list_id, argv['colname'], argv['col'])
+    ExtractData(pd_data, list_id, argv['colname'], argv['o'], argv['col'])
 
 
 if __name__ == '__main__':
