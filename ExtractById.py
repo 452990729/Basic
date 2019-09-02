@@ -11,6 +11,8 @@ def ReadTotal(file_in, noheader):
         pd_data = pd.read_csv(file_in, sep='\t', header=None, index_col=0)
     else:
         pd_data = pd.read_csv(file_in, sep='\t', header=0, index_col=0)
+    pd_data.index = [str(i) for i in pd_data.index]
+    pd_data.columns = [str(i) for i in pd_data.columns]
     return pd_data
 
 def HandleID(file_in):

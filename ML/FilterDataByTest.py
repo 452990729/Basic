@@ -12,6 +12,7 @@ import HpTest
 
 def GetData(file_in):
     pd_data =pd.read_csv(file_in, sep='\t', header=0, index_col=0)
+    pd_data.index = [str(i) for i in pd_data.index]
     return pd_data
 
 def ClassifyContinusTest(X, Y):
@@ -36,13 +37,15 @@ def ClassifyBinaryTest(X, Y):
     assert X.shape[0] == Y.shape[0]
     X_T = X.T
 #    chi2_p = HpTest.GetBinaryTest(X.T, Y, 'chi2')
-#    fisher_p = HpTest.GetBinaryTest(X_T, Y, 'fisher')
-#    X_T.insert(0, 'fisher_p', fisher_p)
-    Mi = HpTest.GetBinaryTest(X_T, Y, 'MI')
-    X_T.insert(0, 'MI', Mi)
+    fisher_p = HpTest.GetBinaryTest(X_T, Y, 'fisher')
+    fisher_q = HpTest.estimate(np.array(fisher_p.iloc[:,0].T))
+    X_T.insert(0, 'fisher_p', fisher_p)
+    X_T.insert(1, 'fisher_q', fisher_q)
+#    Mi = HpTest.GetBinaryTest(X_T, Y, 'MI')
+#    X_T.insert(0, 'MI', Mi)
 #    X_T.insert(1, 'chi2_p', chi2_p)
 #    df_filter = X_T[(X_T['fisher_p']<=0.5) | (X_T['chi2_p']<=0.5)].iloc[:, 2:].T
-    df_filter = X_T[(X_T['MI']<0.05)].iloc[:, 1:].T
+    df_filter = X_T[(X_T['fisher_q']<0.05)].iloc[:, 2:].T
     X_T.to_csv('MulitTestOfFeature.txt', sep='\t', header=True, index=True)
     df_filter.to_csv('FeatureFilterByTest.txt', sep='\t', header=True, index=True)
 

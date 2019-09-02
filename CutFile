@@ -35,6 +35,7 @@ def SplitJob(shell, num, outb, jobh=1, platform='local', mem='1'):
                        'w')
             out.write(line+'\n')
     out.close()
+    os.system('cd {}'.format(outb))
     if platform == 'local':
         for fl in glob(outpath+'/*.sh'):
             os.system('sh {} 1> {} 2> {}&'.format(fl, fl+'.o', fl+'.e'))

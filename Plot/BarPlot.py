@@ -15,9 +15,10 @@ def ReadData(file_in):
     pd_data = pd.read_csv(file_in, sep='\t', header=0, index_col=0)
     return pd_data
 
-def MakePlot(pd_data, tp, title, xlabel, ylabel):
+def MakePlot(pd_data, tp, title, xlabel, ylabel, size, out):
     plt.style.use('my-paper')
-    fig, ax = plt.subplots(figsize=(10,15))
+    list_size = re.split(',', size)
+    fig, ax = plt.subplots(figsize=(int(list_size[0]),int(list_size[1])))
     list_bar = []
     x = np.arange(pd_data.shape[0])
     if tp == 'stack':
@@ -44,7 +45,7 @@ def MakePlot(pd_data, tp, title, xlabel, ylabel):
         ax.set_position([box.x0, box.y0, box.width * 0.8, box.height])
         ax.legend([locals()[m][0] for m in list_bar], list(pd_data.columns),\
                  loc='upper left', bbox_to_anchor=(1, 0.5), frameon=False)
-    plt.savefig('Barplot.pdf', dpi=300)
+    plt.savefig('{}.pdf'.format(out), dpi=300)
 
 def main():
     parser = argparse.ArgumentParser(description="make barplot")
@@ -53,9 +54,11 @@ def main():
     parser.add_argument('-title', help='th title of boxplot', default='')
     parser.add_argument('-xlabel', help='the xlable of boxplot', default='')
     parser.add_argument('-ylabel', help='the ylable of boxplot', default='')
+    parser.add_argument('-size', help='the figsize of boxplot, width,height, <<10,15>>', default='10,15')
+    parser.add_argument('-out', help='the output of boxplot', default='Barplot')
     argv=vars(parser.parse_args())
     pd_data = ReadData(argv['m'])
-    MakePlot(pd_data, argv['type'], argv['title'], argv['xlabel'], argv['ylabel'])
+    MakePlot(pd_data, argv['type'], argv['title'], argv['xlabel'], argv['ylabel'], argv['size'], argv['out'])
 
 
 if __name__ == '__main__':
