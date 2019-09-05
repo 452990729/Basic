@@ -7,7 +7,7 @@ library(argparse)
 
 parser <- ArgumentParser(description='download data from TCGA')
 parser$add_argument('-t', help='the cancer type, seperate by :,exsample BRCA:GBM. Cancer list<"BRCA","GBM","OV","LUAD","UCEC","KIRC","HNSC","LGG","THCA","LUSC","PRAD","SKCM","COAD","STAD","BLCA","LIHC","CESC","KIRP","SARC","LAML","ESCA","PAAD","PCPG","READ","TGCT","THYM","KICH","ACC","MESO","UVM","DLBC","UCS","CHOL">')
-parser$add_argument('-c', help='download type <RNASeq, miRNA, CNV, meth, clinical>', default='clinical')
+parser$add_argument('-c', help='download type <RNASeqFPKM, RNASeqCount, miRNA, CNV, meth, clinical>', default='clinical')
 argv <- parser$parse_args()
 
 #下面填入要下载的癌症种类
