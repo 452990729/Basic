@@ -43,9 +43,12 @@ def GetMitrix(file1, file2, dist, control):
         pd1 = pd1.T
         pd2 = pd2.T
     pd_out = pd.DataFrame(0, index=pd1.index, columns=pd2.index)
+    pd1 = pd1.loc[:,pd2.columns]
+    pd2 = pd2.fillna(0.001)
     for index1, row1 in pd1.iterrows():
         for index2, row2 in pd2.iterrows():
             pd_out.loc[index1, index2] = Dist(row1, row2, dist)
+    pd_out = pd_out.dropna(how='all').fillna(0)
     pd_out.to_csv('correlation.txt', sep='\t')
     return pd_out
 
@@ -72,9 +75,11 @@ def Heatmap(dict_pht):
     pt_arg = ', '.join([i+'='+dict_pheatmap_arg[i] for i in dict_pheatmap_arg])
     R_code = open('Heatmap.R', 'w')
     R_code.write("library(pheatmap)\n\
+                 library(RColorBrewer)\n\
+                 color <- colorRampPalette(c('#436eee', 'white', '#EE0000'))(100)\n\
                  dataExpr <- read.table('correlation.txt', sep='\\t', row.names=1, header=T, quote="", comment="", check.names=F)\n\
                  pdf('{}')\n\
-                 out <- pheatmap(dataExpr, {})\n\
+                 out <- pheatmap(dataExpr, color=color, {})\n\
                  dev.off()\n\
                  ".format(out, pt_arg))
     R_code.close()
@@ -93,7 +98,7 @@ def main():
 
     parser.add_argument('-orientation', help='input orientation of input, sample must be at rows',\
                        choices=['row', 'col'], default='row')
-    parser.add_argument('-pheatmap', help='input pheatmap parameter')
+    parser.add_argument('-pheatmap', help='input pheatmap parameter "key1:value1,key2:value2"')
     argv=vars(parser.parse_args())
     if not argv['f2']:
         f2 = argv['f']

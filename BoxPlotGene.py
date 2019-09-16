@@ -16,10 +16,9 @@ def GetGene(file_in, tp):
         for line in f.readlines()[1:]:
             list_split = re.split('\t', line.strip())
             if list_split[0] == tp:
-                np1 = np.array([float(i) for i in list_split[1:9]])
-                np2 = np.array([float(i) for i in list_split[9:16]])
-                np3 = np.array([float(i) for i in list_split[16:]])
-                list_data = [np1, np2, np3]
+                np1 = np.array([float(i) for i in list_split[1:289]])
+                np2 = np.array([float(i) for i in list_split[289:]])
+                list_data = [np1, np2]
     return list_data
 
 def GetTtest(list_data):
@@ -36,8 +35,8 @@ def MakePlot(list_data, tp):
     capprops = dict(linewidth=2)
     axe.boxplot(list_data, showfliers=False, widths=0.6, boxprops=boxprops, medianprops=medianprops, whiskerprops=whiskerprops, capprops=capprops)
     axe.set_title(tp+' Expression', size=20)
-    axe.set_ylim(50, 170)
-    axe.set_yticks([60,80,100,120,140])
+#    axe.set_ylim(50, 170)
+#    axe.set_yticks([60,80,100,120,140])
     plt.xticks(size = 18, rotation=20)
     plt.yticks(size = 18)
     plt.setp(axe.spines.values(), linewidth=3)
@@ -47,7 +46,7 @@ def MakePlot(list_data, tp):
     axe.spines['right'].set_visible(False)
     axe.spines['top'].set_visible(False)
     plt.setp(axe, xticks=[y + 1 for y in range(len(list_data,))],\
-                      xticklabels=['normal', 'psoriatic', 'uninvolved'])
+                      xticklabels=['Cancer', 'Normal'])
     plt.savefig('{}.pdf'.format(tp), dpi=300)
 
 def main():
