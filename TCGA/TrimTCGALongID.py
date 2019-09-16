@@ -14,13 +14,13 @@ def Trim(pd_data, outfile, row):
     list_tmp = []
     if row:
         for value in pd_data.index:
-            lb = '-'.join(re.split('-', value)[:3])
+            lb = '-'.join(re.split('-', value)[:4])[:-1]
             list_tmp.append(lb)
         pd_data.index = list_tmp
         pd_data.to_csv(outfile, sep='\t', header=True, index=True)
     else:
         for value in pd_data.columns:
-            lb = '-'.join(re.split('-', value)[:3])
+            lb = '-'.join(re.split('-', value)[:4])[:-1]
             list_tmp.append(lb)
         pd_data.to_csv(outfile, sep='\t', header=list_tmp, index=True)
 
