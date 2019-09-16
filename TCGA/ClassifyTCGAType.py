@@ -13,7 +13,7 @@ def GetClass(pd_data):
     list_c = []
     list_n = []
     for sample in pd_data.columns:
-        tp = int(re.findall('\w+\-\w+\-\w+\-(\d+)\w\-', sample)[0])
+        tp = int(re.findall('\w+\-\w+\-\w+\-(\d+)', sample)[0])
         if tp>=1 and tp<=9:
             list_c.append(sample)
         elif tp>=10 and tp<=29:
@@ -26,7 +26,7 @@ def SelectDup(list_in):
     list_out = []
     list_lb = []
     for sample in list_in:
-        lb = '-'.join(re.split('-', sample)[:4])[:-1]
+        lb = '-'.join(re.split('-', sample)[:4])
         if lb not in list_lb:
             list_lb.append(lb)
             list_out.append(sample)

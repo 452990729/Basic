@@ -29,8 +29,8 @@ dimnames <- list(rownames(exp),colnames(exp))
 data <- matrix(as.numeric(as.matrix(exp)),nrow=nrow(exp),dimnames=dimnames)
 data=data[,group[,1]]
 data <- avereps(data)
+data[is.na(data)] <- 0
 data <- data[rowMeans(data)>0,]
-
 data <- normalizeBetweenArrays(data)
 data=data[!is.na(data[,1]),]
 normalData <- cbind(id=row.names(data),data) #为了让id号写入文件
