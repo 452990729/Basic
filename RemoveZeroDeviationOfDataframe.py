@@ -21,7 +21,7 @@ def DropData(pd_data, threshold, row):
 def main():
     parser = argparse.ArgumentParser(description="remove low standard deviation of dataframe")
     parser.add_argument('-m', help='input matrix data', required=True)
-    parser.add_argument('-row', help='cal standard deviation by row', action='store_true')
+    parser.add_argument('-row', help='cal standard deviation by row<<row>>', action='store_true')
     parser.add_argument('-t', help='filter threshold standard deviation<<0>>', type=float, default=0)
     parser.add_argument('-o', help='output file<<RemoveStandardDeviation.txt>>', default='RemoveStandardDeviation.txt')
     argv=vars(parser.parse_args())

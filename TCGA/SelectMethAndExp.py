@@ -13,9 +13,9 @@ def ReadMeth(file_in):
             list_split = re.split('\t', line.strip())
             genes = list(set(re.split(';', list_split[-1])))
             if float(list_split[3])>0:
-                list_up += genes
-            else:
                 list_down += genes
+            else:
+                list_up += genes
     return list_up, list_down
 
 def ReadExp(file_in, list_up, list_down):
@@ -23,6 +23,7 @@ def ReadExp(file_in, list_up, list_down):
     print 'hypermethylation: {}'.format(str(len(list_down)))
     hypomethylation_high = open('hypomethylation_high.txt', 'w')
     hypermethylated_lower = open('hypermethylated_lower.txt', 'w')
+    select_all = open('Exp_Meth_select.txt', 'w')
     m = 0
     n = 0
     a = 0
@@ -32,10 +33,12 @@ def ReadExp(file_in, list_up, list_down):
             list_split = re.split('\t', line)
             if float(list_split[2]) > 0 and list_split[0] in list_up:
                 hypermethylated_lower.write(list_split[0]+'\n')
+                select_all.write(list_split[0]+'\n')
                 m += 1
             elif float(list_split[2]) < 0 and list_split[0] in list_down:
                 hypomethylation_high.write(list_split[0]+'\n')
                 n += 1
+                select_all.write(list_split[0]+'\n')
             if float(list_split[2]) > 0:
                 a += 1
             elif float(list_split[2]) < 0:
@@ -46,6 +49,7 @@ def ReadExp(file_in, list_up, list_down):
     print 'hypomethylation_high: {}'.format(str(n))
     hypomethylation_high.close()
     hypermethylated_lower.close()
+    select_all.close()
 
 def main():
     parser = argparse.ArgumentParser(description="define the hypomethylation_high/hypermethylated_lower of Exp and Meth")

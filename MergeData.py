@@ -26,9 +26,10 @@ def main():
     parser = argparse.ArgumentParser(description="Merge data by columns")
     parser.add_argument('-i', help='input matrix file, seperate by ,', required=True)
     parser.add_argument('-m', help='the merge method <<inner>>', choices=['left', 'right', 'outer', 'inner'], default='inner')
+    parser.add_argument('-o', help='output file<<MergedMatrix.txt>>', default='MergedMatrix.txt')
     argv=vars(parser.parse_args())
     pd_out = MakeFinal(re.split(',', argv['i']), argv['m'])
-    pd_out.to_csv('MergedMatrix.txt', sep='\t', header=True, index=True)
+    pd_out.to_csv(argv['o'], sep='\t', header=True, index=True)
 
 
 if __name__ == '__main__':

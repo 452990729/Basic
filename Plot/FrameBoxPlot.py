@@ -22,7 +22,7 @@ def GetTtest(list_data):
             s, p = ttest_ind(list_data[i], m)
             print p
 
-def MakePlot(pd_data, title, xlabel, ylabel, swarm, violin, ylim, figsize):
+def MakePlot(pd_data, title, xlabel, ylabel, swarm, violin, ylim, figsize, outfile):
     plt.style.use(['my-paper', 'my-box'])
     figsize = [int(i) for i in re.split(':', figsize)]
     fig, axe = plt.subplots(figsize=(figsize[0], figsize[1]))
@@ -70,7 +70,7 @@ def MakePlot(pd_data, title, xlabel, ylabel, swarm, violin, ylim, figsize):
     axe.set_ylabel(ylabel, size = 40)
     plt.xticks(size = 30, rotation=40)
     plt.yticks(size = 30)
-    plt.savefig('Boxplot.pdf', dpi=300)
+    plt.savefig(outfile, dpi=300)
 
 def main():
     parser = argparse.ArgumentParser(description="make boxplot")
@@ -82,9 +82,10 @@ def main():
     parser.add_argument('-figsize', help='the figsize of boxplot , width:height<<6:15>>', default='6:15')
     parser.add_argument('-swarm', help='plot swarm', action='store_true')
     parser.add_argument('-violin', help='plot violin', action='store_true')
+    parser.add_argument('-o', help='output<<Boxplot.pdf>>', default='Boxplot.pdf')
     argv=vars(parser.parse_args())
     pd_data = ReadData(argv['i'])
-    MakePlot(pd_data, argv['title'], argv['xlabel'], argv['ylabel'], argv['swarm'], argv['violin'], argv['ylim'], argv['figsize'])
+    MakePlot(pd_data, argv['title'], argv['xlabel'], argv['ylabel'], argv['swarm'], argv['violin'], argv['ylim'], argv['figsize'], argv['o'])
 
 
 if __name__ == '__main__':
