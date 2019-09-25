@@ -86,10 +86,10 @@ def BinaClass(feature, response, model, fold):
     list_f1 = []
     mean_tpr = 0.0
     mean_fpr = np.linspace(0, 1, 100)
-    response = response.dropna()
-    feature = feature.dropna()
-    feature = feature.loc[response.index, :]
-    response = response.loc[feature.index]
+#    response = response.dropna()
+#    feature = feature.dropna()
+#    feature = feature.loc[response.index, :]
+#    response = response.loc[feature.index]
     for train_index, test_index in skf.split(feature, response):
         mbs = model.fit(feature.iloc[train_index], response.iloc[train_index],)
         y_score = mbs.predict_proba(feature.iloc[test_index])[:,1]

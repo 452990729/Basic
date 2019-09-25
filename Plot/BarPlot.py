@@ -17,7 +17,7 @@ def ReadData(file_in):
 
 def MakePlot(pd_data, tp, title, xlabel, ylabel, size, out, rotation):
     plt.style.use('my-paper')
-    list_size = re.split(',', size)
+    list_size = re.split(':', size)
     fig, ax = plt.subplots(figsize=(int(list_size[0]),int(list_size[1])))
     list_bar = []
     x = np.arange(pd_data.shape[0])
@@ -55,7 +55,7 @@ def main():
     parser.add_argument('-xlabel', help='the xlable of barplot', default='')
     parser.add_argument('-rotation', help='the rotation of xticklabels of barplot', type=int, default=45)
     parser.add_argument('-ylabel', help='the ylable of barplot', default='')
-    parser.add_argument('-size', help='the figsize of barplot, width,height, <<10,15>>', default='10,15')
+    parser.add_argument('-size', help='the figsize of barplot, width,height, <<10:15>>', default='10:15')
     parser.add_argument('-out', help='the output of barplot', default='Barplot')
     argv=vars(parser.parse_args())
     pd_data = ReadData(argv['m'])

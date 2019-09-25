@@ -77,12 +77,12 @@ def PlotHeatmap(pd_data, pd_gene, fig, ax):
     list_hl = ['Low' if i<=means else 'High' for i in range(pd_data.shape[0])]
     pd_data['Level'] = list_hl
     pd_gene = pd_gene.loc[:, pd_data.index]
-#    for index in list(pd_gene.index):
-#        pd_gene.loc[index,:] = (pd_gene.loc[index,:] - pd_gene.loc[index,:].mean())/pd_gene.loc[index,:].std(ddof=0)
-    for col in list(pd_gene.columns):
-        pd_gene[col] = (pd_gene[col] - pd_gene[col].mean())/pd_gene[col].std(ddof=0)
+    for index in list(pd_gene.index):
+        pd_gene.loc[index,:] = (pd_gene.loc[index,:] - pd_gene.loc[index,:].mean())/pd_gene.loc[index,:].std(ddof=0)
+#    for col in list(pd_gene.columns):
+#        pd_gene[col] = (pd_gene[col] - pd_gene[col].mean())/pd_gene[col].std(ddof=0)
     cbar_ax = fig.add_axes([.78, .13, .015, .25])
-    hp = sns.heatmap(pd_gene, xticklabels=False ,ax=ax, cmap="bwr", cbar=1, cbar_ax=cbar_ax)
+    hp = sns.heatmap(pd_gene, xticklabels=False ,ax=ax, cmap="bwr", cbar=1, cbar_ax=cbar_ax, vmin=-1, vmax=1)
     ax.tick_params(axis='y', which='both', length=0)
 
 def PlotBar(pd_data, ax):
