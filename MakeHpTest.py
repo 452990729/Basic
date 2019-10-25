@@ -40,16 +40,24 @@ def MakeTest(pd_data, dict_cls, tp):
     pd_out['Qvalue'] = HpTest.estimate(np.array(pd_r.iloc[:,0].T))
     return pd_out
 
+def Filter(pd_data, pvalue, fold):
+    pd_out = pd_data.loc[pd_data.loc[:, 'Qvalue']<pvalue,:]
+    pd_out = pd_out.loc[abs(pd_out.loc[:, 'log(FoldChange)'])>fold,:]
+    return pd_out
+
 def main():
     parser = argparse.ArgumentParser(description="Hp test")
     parser.add_argument('-m', help='input feature matrix, col are samples, index are features', required=True)
     parser.add_argument('-c', help='input class file, no header and index, col1 are samples, col2 are class', required=True)
     parser.add_argument('-t', help='test method<<ranksums>>', choices=['T', 'ks_2samp', 'ranksums', 'signed-rank'],  default='ranksums')
+    parser.add_argument('-p', help='pvalue cutoff <<0.05>>', type=float, default=0.05)
+    parser.add_argument('-f', help='foldchange cutoff <<2>>', type=float, default=2)
     parser.add_argument('-o', help='output file <<HpTestFile.txt>>', default='HpTestFile.txt')
     argv=vars(parser.parse_args())
     pd_data = ReadData(argv['m'])
     dict_cls = ReadCls(argv['c'])
     pd_out = MakeTest(pd_data, dict_cls, argv['t'])
+    pd_out = Filter(pd_out, argv['p'], argv['f'])
     pd_out.to_csv(argv['o'], sep='\t', header=True, index=True)
 
 
