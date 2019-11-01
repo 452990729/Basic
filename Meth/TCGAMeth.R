@@ -17,7 +17,7 @@ fdrFilter=argv$fdr
 logFCfilter=argv$logFC
 
 outTab <- data.frame()
-group=read.table(class, header=F, sep="\t")
+group=read.table(class, header=T, sep="\t")
 Type <- group[,2]
 grade <- ifelse(Type=="Normal",1,2)
 
@@ -55,6 +55,6 @@ pValue <- outTab[,"pValue"]
 fdr <- p.adjust(as.numeric(as.vector(pValue)),method="fdr")
 outTab <- cbind(outTab,fdr=fdr)
 write.table(outTab,file="allGene.xls",sep="\t",row.names=F,quote=F)
-outDiff <- outTab[(abs(as.numeric(as.vector(outTab$logFC))) > logFCfilter & as.numeric(as.vector(outTab$fdr)) < fdrFilter),]
+outDiff <- outTab[(abs(as.numeric(as.vector(outTab$logFC))) > logFCfilter & as.numeric(as.vector(outTab$pValue)) < fdrFilter),]
 write.table(outDiff,file="diff.xls",sep="\t",row.names=F,quote=F)
 

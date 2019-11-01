@@ -41,8 +41,8 @@ def MakeTest(pd_data, dict_cls, tp):
     return pd_out
 
 def Filter(pd_data, pvalue, fold):
-    pd_out = pd_data.loc[pd_data.loc[:, 'Qvalue']<pvalue,:]
-    pd_out = pd_out.loc[abs(pd_out.loc[:, 'log(FoldChange)'])>fold,:]
+    pd_out = pd_data.loc[pd_data.loc[:, 'Qvalue']<=pvalue,:]
+    pd_out = pd_out.loc[abs(pd_out.loc[:, 'log(FoldChange)'])>=fold,:]
     return pd_out
 
 def main():
