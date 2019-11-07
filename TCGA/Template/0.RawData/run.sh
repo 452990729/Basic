@@ -14,4 +14,3 @@ mv SwitchMatrix.txt TCGA-RNACountSwitch.txt
 mv SwitchMatrix.txt TCGA-RNAFPKMSwitch.txt
 mkdir Final
 /home/lixuefei/Pipeline/Basic/TCGA/SplitTCGAType.py -rc TCGA-RNACountSwitch.txt -rf TCGA-RNAFPKMSwitch.txt -m TCGA-METH.txt -o Final
-cd ../

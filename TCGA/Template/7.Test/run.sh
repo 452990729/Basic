@@ -13,4 +13,3 @@ mv TrimedMatrix.txt TestFPKM.txt
 mkdir ROC
 cd ROC
 /home/lixuefei/Pipeline/Basic/ML/MlAndPredict.py validator -x ../TestFPKM.txt -y ../../0.RawData/TCGAStatus.txt
-cd ../../

@@ -1,6 +1,6 @@
 #!/usr/bin/env python2
 
-
+import os
 import re
 import argparse
 import pandas as pd
@@ -17,12 +17,15 @@ def ReadTotal(file_in, noheader):
 
 def HandleID(file_in):
     list_out = []
-    with open(file_in, 'r') as f:
-        for line in f:
-            line = line.strip('\n')
-            list_split = re.split('\t', line)
-            if list_split[0] != '':
-                list_out.append(list_split[0])
+    if not os.path.exists(file_in):
+        list_out.append(file_in)
+    else:
+        with open(file_in, 'r') as f:
+            for line in f:
+                line = line.strip('\n')
+                list_split = re.split('\t', line)
+                if list_split[0] != '':
+                    list_out.append(list_split[0])
     return list_out
 
 def ExtractData(pd_data, list_id, colname, outfile, col=False):
@@ -39,7 +42,7 @@ def ExtractData(pd_data, list_id, colname, outfile, col=False):
 def main():
     parser = argparse.ArgumentParser(description="extract data by id (col/row)")
     parser.add_argument('-m', help='input matrix data', required=True)
-    parser.add_argument('-i', help='input input id data, more than 1 columns', required=True)
+    parser.add_argument('-i', help='input input id data, more than 1 columns or string', required=True)
     parser.add_argument('-col', help='extract by clo or by row', action='store_true')
     parser.add_argument('-colname', help='extract row by the col label if false, use index<<False>>', default=False)
     parser.add_argument('-noheader', help='input matrix data has header or not', action='store_true')

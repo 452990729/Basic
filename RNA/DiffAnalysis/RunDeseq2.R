@@ -13,10 +13,10 @@ parser$add_argument('-f', help='log foldchange cutoff <<1>>', default=1)
 argv <- parser$parse_args()
 
 Exp <- read.table(argv$exp , sep = '\t', row.names=1, header=T,  quote="", comment="", check.names=F)
-Sample <- read.table(argv$cls, sep = '\t', row.names=1, header=F,  quote="", comment="", check.names=F)
+Sample <- read.table(argv$cls, sep = '\t', row.names=1, header=T,  quote="", comment="", check.names=F)
 
 Exp = Exp[rownames(Sample)]
-dds <- DESeqDataSetFromMatrix(Exp, Sample, design= ~ V2)
+dds <- DESeqDataSetFromMatrix(Exp, Sample, design= ~ Type)
 dds <- DESeq(dds)
 res = results(dds)
 diff_gene_deseq2 <-subset(res, padj < argv$p & abs(log2FoldChange) > argv$f)

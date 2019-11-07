@@ -5,4 +5,3 @@
 mkdir ROC
 cd ROC
 /home/lixuefei/Pipeline/Basic/ML/MlAndPredict.py validator -x ../../4.cox/multivariable/CoxRegressDiff005FPKM.txt -y ../../0.RawData/TCGAStatus.txt
-cd ../../

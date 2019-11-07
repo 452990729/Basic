@@ -28,4 +28,3 @@ cd ../
 /home/lixuefei/Pipeline/Basic/Plot/FrameBoxPlot.py -i Gene.filter.FPKM.boxplot.txt -figsize 10:16 -ylim=-8:5 -o Gene.filter.FPKM.boxplot.pdf
 /home/lixuefei/Pipeline/Basic/TCGA/GetGeneForBoxplot.py -e ../../3.Exp_Meth/Exp_Meth_select_Meth.txt -c ../../0.RawData/Final/TrainCancerClass.txt -i CoxRegressDiff005.txt -o Gene.filter.Meth.boxplot.txt
 /home/lixuefei/Pipeline/Basic/Plot/FrameBoxPlot.py -i Gene.filter.Meth.boxplot.txt -figsize 10:16 -ylim=-0.1:1 -o Gene.filter.Meth.boxplot.pdf
-cd ../../

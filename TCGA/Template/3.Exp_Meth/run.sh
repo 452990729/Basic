@@ -8,4 +8,3 @@
 /home/lixuefei/Pipeline/Basic/MergeData.py -i Exp_Meth_select_FPKM_Cancer_medium.txt,Exp_Meth_select_Meth_Cancer_medium.txt -o Exp_Meth_select_medium.txt
 /home/lixuefei/Pipeline/Basic/Plot/ScatterPlot.py -m Exp_Meth_select_medium.txt -diag -ylim=-0.1:1 -xlim=-1:55
 Rscript /home/lixuefei/Pipeline/Basic/RNA/enrich.R -f Exp_Meth_select.txt
-cd ../

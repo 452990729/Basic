@@ -9,4 +9,3 @@ cd multivariable
 cd ../
 /home/lixuefei/Pipeline/Basic/Survial/CoxForestPlot.py -m multivariable/CoxRegress.txt
 /home/lixuefei/Pipeline/Basic/TCGA/NomogramAnalysis.R -m ClinicalForCox.txt -s ../0.RawData/ClinicalUseful.txt
-cd ../

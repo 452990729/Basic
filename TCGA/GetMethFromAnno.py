@@ -13,9 +13,10 @@ def ReadAnnot(file_in):
     dict_tmp = {}
     with open(file_in, 'r') as f:
         for line in f.readlines()[1:]:
-            list_split = re.split('\t', line.strip())
+            list_split = re.split('\t', line.strip('\n'))
             for gene in re.split(';', list_split[-1]):
-                dict_tmp[gene] = list_split[0]
+                if gene and gene!='NA':
+                    dict_tmp[gene] = list_split[0]
     return dict_tmp
 
 def MakeData(dict_in, pd_data):
@@ -25,6 +26,7 @@ def MakeData(dict_in, pd_data):
         list_index.append(gene)
         pd_out = pd_out.append(pd_data.loc[dict_in[gene],:])
     pd_out.index=list_index
+    pd_out = pd_out.fillna(0)
     pd_out.to_csv('MethSwitchAnno.txt', sep='\t', header=True, index=True)
 
 def main():
