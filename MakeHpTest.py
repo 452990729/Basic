@@ -20,11 +20,12 @@ def ReadCls(file_in):
     dict_tmp = {}
     with open(file_in, 'r') as f:
         for line in f:
-            list_split = re.split('\t', line.strip())
-            if list_split[1] not in dict_tmp:
-                dict_tmp[list_split[1]] = [list_split[0],]
-            else:
-                dict_tmp[list_split[1]] += [list_split[0],]
+            list_split = re.split('\t', line.strip('\n'))
+            if list_split[0]:
+                if list_split[1] not in dict_tmp:
+                    dict_tmp[list_split[1]] = [list_split[0],]
+                else:
+                    dict_tmp[list_split[1]] += [list_split[0],]
     return dict_tmp
 
 def MakeTest(pd_data, dict_cls, tp):

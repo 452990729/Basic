@@ -15,5 +15,5 @@ annotation.table=annotation.table[,c("gene","UCSC_RefGene_Name")]
 
 meth <- read.table(argv$m, sep="\t",header=T,check.names=F)
 
-mergeRes=merge(meth,annotation.table,by.x="gene",by.y="gene",all.x=T)
+mergeRes=merge(meth,annotation.table,by.x="id",by.y="gene",all.x=T)
 write.table(mergeRes, file=argv$o, sep='\t', row.names=F, col.names=T, quote=F)

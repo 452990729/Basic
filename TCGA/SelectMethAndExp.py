@@ -31,11 +31,11 @@ def ReadExp(file_in, list_up, list_down):
     with open(file_in, 'r') as f:
         for line in f.readlines()[1:]:
             list_split = re.split('\t', line)
-            if float(list_split[2]) > 0 and list_split[0] in list_up:
+            if float(list_split[2]) > 0 and list_split[0] in list_down:
                 hypermethylated_lower.write(list_split[0]+'\n')
                 select_all.write(list_split[0]+'\n')
                 m += 1
-            elif float(list_split[2]) < 0 and list_split[0] in list_down:
+            elif float(list_split[2]) < 0 and list_split[0] in list_up:
                 hypomethylation_high.write(list_split[0]+'\n')
                 n += 1
                 select_all.write(list_split[0]+'\n')
