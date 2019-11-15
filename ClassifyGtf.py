@@ -17,7 +17,7 @@ def ReadGff(GFF):
     return list_gff
 
 def GetType(list_gff, list_tp, lb, tp):
-    out = open(lb+'_'+tp+'.gff', 'w')
+    out = open(lb+'_'+tp+'.gtf', 'w')
     for line in list_gff:
         if line.attr['gene_biotype'] in list_tp:
             out.write(line.get_gff_line().strip()+'\n')

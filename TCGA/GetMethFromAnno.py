@@ -11,13 +11,28 @@ def ReadData(file_in):
 
 def ReadAnnot(file_in):
     dict_tmp = {}
+    dict_out = {}
     with open(file_in, 'r') as f:
         for line in f.readlines()[1:]:
             list_split = re.split('\t', line.strip('\n'))
             for gene in re.split(';', list_split[-1]):
                 if gene and gene!='NA':
-                    dict_tmp[gene] = list_split[0]
-    return dict_tmp
+                    if gene not in dict_tmp:
+                        dict_tmp[gene] = [list_split[0]+':'+list_split[3],]
+                    else:
+                        dict_tmp[gene] += [list_split[0]+':'+list_split[3],]
+
+    for gene in dict_tmp:
+        a = 0
+        b = 0
+        for vls in dict_tmp[gene]:
+            if float(re.split(':', vls)[1])>0:
+                a += 1
+            else:
+                b += 1
+        if a == 0 or b == 0:
+            dict_out[gene] = re.split(':', dict_tmp[gene][0])[0]
+    return dict_out
 
 def MakeData(dict_in, pd_data):
     pd_out = pd.DataFrame(columns=pd_data.columns)

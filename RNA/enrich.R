@@ -32,7 +32,7 @@ write.table(summary(erich.go.ALL),paste(basename(outdir), ".G-enrich.txt", sep="
 pdf(paste(basename(outdir), ".G-enrich.pdf", sep=""),height = 10,width = 10)
 barplot(erich.go.ALL,drop=TRUE,showCategory = 25)
 dev.off()
-KEGG=enrichKEGG(gene=entrez_id,pvalueCutoff=0.05,qvalueCutoff=0.1, readable=TRUE)
+KEGG=enrichKEGG(gene=entrez_id,pvalueCutoff=0.05,qvalueCutoff=0.1)
 write.table(summary(KEGG),paste(basename(outdir), ".K-enrich.txt", sep=""), row.names =F, sep = '\t', quote = F)
 pdf(paste(basename(outdir), ".K-enrich.pdf", sep=""), height = 10,width = 10)
 dotplot(KEGG,showCategory = 12) 

@@ -21,7 +21,8 @@ def HandleFile(file_in, pd_g, pd_c, log, outfile):
     if os.path.exists(file_in):
         with open(file_in, 'r') as f:
             list_g = [re.split('\t', i.strip('\n'))[0] for i in f]
-            list_g.remove('')
+            if '' in list_g:
+                list_g.remove('')
     else:
         list_g = [file_in]
     pd_c = pd_c.loc[pd_g.columns,:]

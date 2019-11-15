@@ -4,11 +4,12 @@ mv tmp TestFPKM.txt
 /home/lixuefei/Pipeline/Basic/TCGA/TrimTCGALongID.py -i TestFPKM.txt -row
 mv TrimedMatrix.txt TestFPKM.txt
 
-/home/lixuefei/Pipeline/Basic/Survial/CoxSurvial.py -t multivariable -s ../0.RawData/ClinicalUseful.txt -c TestFPKM.txt
-#/home/lixuefei/Pipeline/Basic/TCGA/MakeRiskScore.py -exp TestFPKM.txt -coef CoxRegress.txt
-/home/lixuefei/Pipeline/Basic/TCGA/MakeRiskScore.py -exp TestFPKM.txt -coef ../4.cox/multivariable/CoxRegressDiff005Coef.txt
+/home/lixuefei/Pipeline/Basic/ExtractById.py -m TestFPKM.txt -i ../4.cox/multivariable/CoxRegressDiff005Coef.txt -o TestFPKMFilter.txt -col
+/home/lixuefei/Pipeline/Basic/Survial/CoxSurvial.py -t multivariable -s ../0.RawData/ClinicalUseful.txt -c TestFPKMFilter.txt
+/home/lixuefei/Pipeline/Basic/TCGA/MakeRiskScore.py -exp TestFPKMFilter.txt -coef CoxRegress.txt
+#/home/lixuefei/Pipeline/Basic/TCGA/MakeRiskScore.py -exp TestFPKM.txt -coef ../4.cox/multivariable/CoxRegressDiff005Coef.txt
 /home/lixuefei/Pipeline/Basic/Survial/HighLowGenePlotSurvial.py -s ../0.RawData/ClinicalUseful.txt -e RiskScore.txt -l RiskScore
-/home/lixuefei/Pipeline/Basic/TCGA/PlotRiskScore.py -r RiskScore.txt -s ../0.RawData/ClinicalUseful.txt -e TestFPKM.txt
+/home/lixuefei/Pipeline/Basic/TCGA/PlotRiskScore.py -r RiskScore.txt -s ../0.RawData/ClinicalUseful.txt -e TestFPKMFilter.txt
 
 mkdir ROC
 cd ROC
