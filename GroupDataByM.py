@@ -38,7 +38,7 @@ def HandleData(dict_class, pd_matrix, tp, outfile, label):
             pd_1 = pd.DataFrame(pd_sub.median(1))
         pd_1.columns=[key, ]
         pd_out = pd_out.append(pd_1.T)
-    pd_out.index = index
+#    pd_out.index = index
     pd_out.T.to_csv(outfile, sep='\t', index=True, header=True)
 
 def main():
