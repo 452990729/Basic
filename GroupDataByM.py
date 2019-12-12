@@ -1,6 +1,7 @@
 #!/usr/bin/env python2
 
 
+import os
 import sys
 import re
 import argparse
@@ -13,14 +14,15 @@ def ReadMatrix(file_in):
 
 def ReadClass(file_in):
     dict_tmp = {}
-    with open(file_in, 'r') as f:
-        for line in f:
-            list_split = re.split('\t', line.strip('\n'))
-            if list_split[0]:
-                if list_split[1] not in dict_tmp:
-                    dict_tmp[list_split[1]] = [list_split[0],]
-                else:
-                    dict_tmp[list_split[1]] += [list_split[0],]
+    if os.path.exists(file_in):
+        with open(file_in, 'r') as f:
+            for line in f:
+                list_split = re.split('\t', line.strip('\n'))
+                if list_split[0]:
+                    if list_split[1] not in dict_tmp:
+                        dict_tmp[list_split[1]] = [list_split[0],]
+                    else:
+                        dict_tmp[list_split[1]] += [list_split[0],]
     return dict_tmp
 
 def HandleData(dict_class, pd_matrix, tp, outfile, label):
@@ -30,6 +32,9 @@ def HandleData(dict_class, pd_matrix, tp, outfile, label):
     else:
         index = pd_matrix.index
     pd_out = pd.DataFrame()
+    if len(keys) == 0:
+        dict_class['value'] = list(pd_matrix.columns)
+        keys = dict_class.keys()
     for key in keys:
         pd_sub = pd_matrix.loc[:, dict_class[key]]
         if tp == 'mean':
@@ -43,7 +48,7 @@ def HandleData(dict_class, pd_matrix, tp, outfile, label):
 
 def main():
     parser = argparse.ArgumentParser(description="cal mean/median of feature by sample class")
-    parser.add_argument('-c', help='the sample class file', required=True)
+    parser.add_argument('-c', help='the sample class file<<none>>', default='none')
     parser.add_argument('-i', help='the input matrix', required=True)
     parser.add_argument('-m', help='mean or median <<mean>>', choices=['mean', 'median'], default='mean')
     parser.add_argument('-o', help='output file<<TransformedMatrix.txt>>', default='TransformedMatrix.txt')
