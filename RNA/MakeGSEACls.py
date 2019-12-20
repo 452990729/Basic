@@ -18,7 +18,7 @@ def ReadCls(file_in):
 def GetData(file_in, file_out, dict_cls):
     out = open(file_out, 'w')
     with open(file_in, 'r') as f:
-        list_split = re.split('\t', next(f).strip())[1:]
+        list_split = re.split('\t', next(f).strip('\n'))[1:]
         out.write(' '.join([str(len(list_split)), '2', '1'])+'\n')
         out.write(' '.join(['#',]+sorted(list(set(dict_cls.values()))))+'\n')
         list_out = [dict_cls[i] for i in list_split]
