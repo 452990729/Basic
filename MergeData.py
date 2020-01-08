@@ -13,6 +13,7 @@ def ReadData(file_in):
 
 def MergeData(pd1, pd2, method):
     pd_out = pd1.merge(pd2, left_index=True, right_index=True, how=method)
+    pd_out = pd_out.fillna(0)
     return pd_out
 
 def MakeFinal(file_list, method):

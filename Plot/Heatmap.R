@@ -16,6 +16,7 @@ parser$add_argument('-cellwidth', help='size <<NA>>', default='NA')
 parser$add_argument('-cellheight', help='size <<NA>>', default='NA')
 parser$add_argument('-breakup', help='value <<NA>>', default='NA')
 parser$add_argument('-breakdown', help='value <<NA>>', default='NA')
+parser$add_argument('-star', help='value <<NA>>', default='NA')
 parser$add_argument('-border', help='have border or not <<TRUE>>', action='store_true')
 parser$add_argument('-annotation_col', help='annotation_col matrix <<NA>>', default='NA')
 parser$add_argument('-annotation_row', help='annotation_rowmatrix <<NA>>', default='NA')
@@ -53,10 +54,15 @@ if(argv$breakup=='NA') {
 } else {
     bk <- unique(c(seq(as.numeric(argv$breakdown),as.numeric(argv$breakup), length=100)))
 }
+if(argv$star=='NA') {
+    star = FALSE
+} else {
+    star <- matrix(ifelse(abs(dataExpr) > as.numeric(argv$star), "*", ""), nrow(dataExpr))
+}
 
 color <- colorRampPalette(c('#436eee', 'white', '#EE0000'))(100)
 pdf(paste(argv$out, "pdf", sep="."))
-pheatmap_out <- pheatmap(dataExpr, scale=argv$scale, cluster_cols=argv$cluster_cols, cluster_rows = argv$cluster_rows, show_rownames=argv$show_rownames, show_colnames=argv$show_colnames, border=argv$border, fontsize = argv$fontsize, cellwidth = cellwidth, cellheight = cellheight, annotation_row=annotation_row, annotation_col=annotation_col, color=color, breaks=bk)
+pheatmap_out <- pheatmap(dataExpr, scale=argv$scale, cluster_cols=argv$cluster_cols, cluster_rows = argv$cluster_rows, show_rownames=argv$show_rownames, show_colnames=argv$show_colnames, border=argv$border, fontsize = argv$fontsize, cellwidth = cellwidth, cellheight = cellheight, annotation_row=annotation_row, annotation_col=annotation_col, color=color, breaks=bk, display_numbers = star)
 dev.off()
 
 if(argv$cluster_cols) {
