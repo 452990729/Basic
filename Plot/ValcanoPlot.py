@@ -30,7 +30,7 @@ def MakePlot(pd_data, fdr, fold):
     ax.scatter(normal['log2FoldChange'], normal['padj'], c='#D3D3D3', marker='o', alpha=1, edgecolors='none', label='Normal: '+str(normal.shape[0]))
     ax.set_xlabel('logFC')
     ax.set_ylabel('-log10(Pvalue)')
-#    ax.set_ylim(-0.5, 16)
+    ax.set_ylim(-0.5, 10)
 #    ax.set_yticks([0, 5, 10, 15])
     ax.set_xlim(-10, 10)
     box = ax.get_position()
