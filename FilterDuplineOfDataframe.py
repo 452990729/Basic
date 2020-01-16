@@ -21,10 +21,11 @@ def main():
     parser = argparse.ArgumentParser(description="remove duplicate line of pandas DataFrame")
     parser.add_argument('-m', help='input matrix, with header and index', required=True)
     parser.add_argument('-t', help=' which columns to filter <<index>>', default='index')
+    parser.add_argument('-o', help='output file <<DataFrameDedup.txt>>', default='DataFrameDedup.txt')
     argv=vars(parser.parse_args())
     pd_data = ReadData(argv['m'])
     pd_out = FilterData(pd_data, argv['t'])
-    pd_out.to_csv('DataFrameDedup.txt', sep='\t', header=True, index=True)
+    pd_out.to_csv(argv['o'], sep='\t', header=True, index=True)
 
 
 if __name__ == '__main__':

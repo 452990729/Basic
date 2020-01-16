@@ -19,7 +19,7 @@ def ReadData(file_in):
 def MakePlot(pd_data, fdr, fold):
     up = pd_data[(pd_data['padj'] < fdr)&(pd_data['log2FoldChange'] > fold)]
     up.loc[:, 'padj'] = np.abs(np.log10(up['padj']))
-    down = pd_data[(pd_data['padj'] < fdr)&(pd_data['log2FoldChange'] < int('-'+str(fold)))]
+    down = pd_data[(pd_data['padj'] < fdr)&(pd_data['log2FoldChange'] < float('-'+str(fold)))]
     down.loc[:, 'padj'] = np.abs(np.log10(down['padj']))
     normal = pd_data[(pd_data['padj'] >= fdr)|(abs(pd_data['log2FoldChange']) <= fold)]
     normal.loc[:, 'padj'] = np.abs(np.log10(normal['padj']))
@@ -45,7 +45,7 @@ def main():
     parser.add_argument('-f', help='log2FoldChange cutoff <<1>>', default=1)
     argv=vars(parser.parse_args())
     pd_data = ReadData(argv['m'])
-    MakePlot(pd_data, argv['p'], argv['f'])
+    MakePlot(pd_data, argv['p'], float(argv['f']))
 
 
 if __name__ == '__main__':
