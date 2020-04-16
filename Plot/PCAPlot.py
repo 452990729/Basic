@@ -10,7 +10,7 @@ from matplotlib import pyplot as plt
 from sklearn.decomposition import PCA
 
 def ReadData(file_in):
-    pd_data = pd.read_csv(file_in, sep='\t', header=0, index_col=0)
+    pd_data = pd.read_csv(file_in, sep='\t', header=0, index_col=0, dtype='a')
     return pd_data
 
 def ReadClass(file_in):
@@ -26,6 +26,7 @@ def ReadClass(file_in):
 
 def MakePCA(pd_data, num=2):
     pca=PCA(n_components=num)
+    print pd_data
     reduced_data=pca.fit_transform(pd_data)
     return pd.DataFrame(reduced_data, index=pd_data.index),\
             [round(i*100, 2) for i in pca.explained_variance_ratio_]
