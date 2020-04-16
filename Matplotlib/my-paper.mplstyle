@@ -1,0 +1,97 @@
+
+### FONT
+font.family : sans-serif
+font.style : normal
+font.weight : normal
+font.size : 18
+font.sans-serif : Arial
+
+
+### AXES
+axes.facecolor : w
+axes.edgecolor : k
+axes.linewidth : 3
+axes.grid : False
+axes.titlesize : 20
+axes.titlepad : 5.0
+axes.titleweight : normal
+axes.labelsize : 20
+axes.labelpad : 5.0
+axes.labelweight : normal
+axes.labelcolor : k
+axes.xmargin : 0
+axes.ymargin : 0
+axes.spines.bottom : True
+axes.spines.left : True
+axes.spines.right : False
+axes.spines.top : False
+polaraxes.grid : True
+axes3d.grid : True
+axes.prop_cycle: cycler('color', ['4C72B0', '55A868', 'C44E52', '8172B2', 'CCB974', '64B5CD'])
+
+
+### TICKS
+xtick.top : False
+xtick.bottom : True
+xtick.major.size : 10
+xtick.minor.size :2
+xtick.minor.visible : False
+xtick.major.width : 3
+xtick.minor.width : 0.5
+xtick.major.pad : 4
+xtick.minor.pad : 4
+xtick.color : k
+xtick.labelsize : 18
+xtick.direction : out
+xtick.alignment : center
+
+ytick.left : True
+ytick.right : False
+ytick.major.size : 10
+ytick.minor.size :2
+ytick.minor.visible : False
+ytick.major.width : 3
+ytick.minor.width : 0.5
+ytick.major.pad : 4
+ytick.minor.pad : 4
+ytick.color : k
+ytick.labelsize : 18
+ytick.direction : out
+ytick.alignment : center
+
+
+
+### GRIDS
+grid.color : k
+grid.linestyle : -
+grid.linewidth : 1
+grid.alpha :0.8
+
+
+
+### Legend
+legend.loc : upper left
+legend.fontsize : 18
+
+
+### FIGURE
+figure.titlesize : 22
+figure.titleweight : normal
+figure.figsize : 8.0, 5.5
+figure.dpi : 300
+figure.facecolor : white
+
+figure.subplot.left : 0.125
+figure.subplot.right : 0.9
+figure.subplot.bottom : 0.1
+figure.subplot.top : 0.9
+figure.subplot.wspace : 0.2
+figure.subplot.hspace : 0.2
+
+
+###SAVING FIGURES
+savefig.dpi : 300
+savefig.facecolor : w
+savefig.edgecolor : w
+savefig.format : png
+savefig.bbox : standard

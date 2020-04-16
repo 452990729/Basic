@@ -1,0 +1,7 @@
+#### LINES
+lines.linewidth: 5
+lines.linestyle: -
+lines.color: C0
+lines.marker: None
+lines.solid_joinstyle: round
+lines.solid_capstyle: projecting

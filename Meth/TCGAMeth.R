@@ -35,7 +35,7 @@ data <- normalizeBetweenArrays(data)
 data=data[!is.na(data[,1]),]
 normalData <- cbind(id=row.names(data),data) #为了让id号写入文件
 write.table(normalData,file="normalizeMethy.txt",sep="\t",row.names=F,quote=F)
-
+'''
 for (i in row.names(data)){
  rt <- rbind(expression=data[i,],grade=grade)
  rt <- as.matrix(t(rt))
@@ -57,4 +57,4 @@ outTab <- cbind(outTab,fdr=fdr)
 write.table(outTab,file="allGene.xls",sep="\t",row.names=F,quote=F)
 outDiff <- outTab[(abs(as.numeric(as.vector(outTab$logFC))) > logFCfilter & as.numeric(as.vector(outTab$pValue)) < fdrFilter),]
 write.table(outDiff,file="diff.xls",sep="\t",row.names=F,quote=F)
-
+'''
