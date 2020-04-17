@@ -49,6 +49,7 @@ def MultiClass(feature, response, model, fold):
     for train_index, test_index in skf.split(feature, response_befor):
         fpr = {}
         tpr = {}
+        print np.array(response.iloc[train_index])
         mbs = model.fit(feature.iloc[train_index], np.array(response.iloc[train_index]),)
         y_score = mbs.predict_proba(feature.iloc[test_index])[:,1]
         y_test = np.array(response.iloc[test_index])
@@ -107,10 +108,10 @@ def BinaClass(feature, response, model, fold):
         mean_tpr[0] = 0.0
     mean_tpr /= fold
     mean_tpr[-1] = 1.0
-    mean_accuracy = round(sum(list_accuracy)/5, 4)
-    mean_precision = round(sum(list_precision)/5, 4)
-    mean_recall = round(sum(list_recall)/5, 4)
-    mean_f1 = round(sum(list_f1)/5, 4)
+    mean_accuracy = round(sum(list_accuracy)/fold, 4)
+    mean_precision = round(sum(list_precision)/fold, 4)
+    mean_recall = round(sum(list_recall)/fold, 4)
+    mean_f1 = round(sum(list_f1)/fold, 4)
     auc_value, ci = GetAUC(np.array(list_y_test), np.array(list_y_score))
     out = open('{}_Score.txt'.format(re.split('\(', str(model))[0]), 'w')
     out.write(' \tauc\taccuracy\tprecision\trecall\tf1\n')
