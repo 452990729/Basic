@@ -34,7 +34,7 @@ def GetType(dict_gene, dict_ens, pd_data, list_tp):
     list_tmp = []
     for key in pd_data.index:
         if key in dict_in:
-            if dict_in[key].attr['gene_biotype'] in list_tp:
+            if dict_in[key].attr['gene_type'] in list_tp:
                 list_tmp.append(key)
         else:
             print '{} not in annotation file'.format(key)
@@ -54,7 +54,7 @@ def Anno(dict_gene, dict_ens, pd_data):
         lb = 'gene_id'
     for key in pd_data.index:
         if key in dict_in:
-            pd_type.loc[key] = dict_in[key].attr['gene_biotype']
+            pd_type.loc[key] = dict_in[key].attr['gene_type']
             pd_anno.loc[key] = dict_in[key].attr['interpro']
             pd_id.loc[key] = dict_in[key].attr[lb]
         else:
@@ -97,7 +97,7 @@ def main():
         dict_gene, dict_ens = ReadGff(mm)
     if argv['method'][0] == 'extract':
         if argv['t'] == 'LncRNA':
-            list_tp = ['lincRNA', '3prime_overlapping_ncrna', 'antisense', 'processed_transcript', 'sense_intronic', 'sense_overlapping']
+            list_tp = ['lincRNA', '3prime_overlapping_ncrna', 'antisense', 'processed_transcript', 'sense_intronic', 'sense_overlapping', 'lncRNA']
         elif argv['t'] == 'mRNA':
             list_tp = ['IG_C_gene', 'IG_D_gene', 'IG_J_gene', 'IG_V_gene', 'protein_coding', 'TR_C_gene', 'TR_D_gene', 'TR_J_gene', 'TR_V_gene']
         elif argv['t'] == 'sRNA':
