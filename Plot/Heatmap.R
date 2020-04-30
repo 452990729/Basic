@@ -62,7 +62,7 @@ if(argv$star=='NA') {
 
 color <- colorRampPalette(c('#436eee', 'white', '#EE0000'))(100)
 pdf(paste(argv$out, "pdf", sep="."))
-pheatmap_out <- pheatmap(dataExpr, scale=argv$scale, cluster_cols=argv$cluster_cols, cluster_rows = argv$cluster_rows, show_rownames=argv$show_rownames, show_colnames=argv$show_colnames, border=argv$border, border_color = "white", fontsize = argv$fontsize, cellwidth = cellwidth, cellheight = cellheight, annotation_row=annotation_row, annotation_col=annotation_col, color=color, breaks=bk, display_numbers = star)
+pheatmap_out <- pheatmap(dataExpr, scale=argv$scale, cluster_cols=argv$cluster_cols, cluster_rows = argv$cluster_rows, show_rownames=argv$show_rownames, show_colnames=argv$show_colnames, border=argv$border, fontsize = argv$fontsize, cellwidth = cellwidth, cellheight = cellheight, annotation_row=annotation_row, annotation_col=annotation_col, color=color, breaks=bk, display_numbers = star)
 dev.off()
 
 if(argv$cluster_cols) {

@@ -19,7 +19,7 @@ Exp = Exp[rownames(Sample)]
 dds <- DESeqDataSetFromMatrix(Exp, Sample, design= ~ V2)
 dds <- DESeq(dds)
 res = results(dds)
-diff_gene_deseq2 <-subset(res, padj < argv$p & abs(log2FoldChange) > argv$f)
+diff_gene_deseq2 <-subset(res, padj < as.numeric(argv$p) & abs(log2FoldChange) > log2(as.numeric(argv$f)))
 diff_up <- subset(diff_gene_deseq2, log2FoldChange>0)
 diff_down <- subset(diff_gene_deseq2, log2FoldChange<0)
 write.table(res,file=paste(argv$out, "All_results.txt", sep="/"), sep = '\t', quote = F, col.names=NA)
