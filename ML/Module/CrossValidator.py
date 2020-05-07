@@ -9,6 +9,7 @@ import numpy as np
 import pandas as pd
 from scipy import interp, stats
 from sklearn.preprocessing import label_binarize
+from sklearn.multiclass import OneVsRestClassifier
 from sklearn.model_selection import StratifiedKFold
 from sklearn.metrics import roc_curve, auc, accuracy_score, f1_score, recall_score, precision_score
 from sklearn.metrics import average_precision_score
@@ -17,11 +18,12 @@ from compare_auc_delong import delong_roc_variance
 
 
 def PlotROC(ax, lb, color, fpr, tpr, auc, ci):
-    if len(ci)>0:
+    if len(ci)>1:
         ax.plot(fpr, tpr, 'k-', lw=2, label='{}AUC(%95 CI) = {}({})'.\
                format(lb, str(round(auc, 2)), '-'.join([str(round(i, 2)) for i in ci])), color=color)
     else:
-        ax.plot(fpr, tpr, 'k-', lw=2, label='{}AUC = {}'.format(lb, str(round(auc, 2))), color=color)
+        print auc
+        ax.plot(fpr, tpr, 'k-', lw=2, label='{} AUC = {}'.format(lb, str(round(auc, 2))), color=color)
     return ax
 
 def PlotPrecisionRecall(lb, precision, recall, average_precision):
@@ -38,43 +40,40 @@ def PlotPrecisionRecall(lb, precision, recall, average_precision):
     fig.savefig('{}_PrecisionRecall.pdf'.format(lb))
 
 def MultiClass(feature, response, model, fold):
+    model = OneVsRestClassifier(model)
     skf = StratifiedKFold(n_splits=fold, random_state=None, shuffle=False)
-    response_befor = response
-    response = pd.DataFrame(label_binarize(response, classes=list(set(list(response)))))
-    n_classes = response.shape[1]
-    micro_mean_tpr = 0.0
-    micro_mean_fpr = np.linspace(0, 1, 100)
-    macro_mean_tpr = 0.0
-    macro_mean_fpr = np.linspace(0, 1, 100)
-    for train_index, test_index in skf.split(feature, response_befor):
-        fpr = {}
-        tpr = {}
-        print np.array(response.iloc[train_index])
-        mbs = model.fit(feature.iloc[train_index], np.array(response.iloc[train_index]),)
-        y_score = mbs.predict_proba(feature.iloc[test_index])[:,1]
-        y_test = np.array(response.iloc[test_index])
+    n_classes = len(set(np.array(response).T))
+    mean_tpr = {}
+    mean_fpr = {}
+    roc_auc = {}
+    for train_index, test_index in skf.split(feature, response):
+        response_t = label_binarize(response.iloc[train_index], classes=np.arange(n_classes))
+        mbs = model.fit(feature.iloc[train_index], response_t,)
+        y_score = mbs.decision_function(feature.iloc[test_index])
+        y_test = label_binarize(response.iloc[test_index], classes=np.arange(n_classes))
         for i in range(n_classes):
-            fpr[i], tpr[i], _ = roc_curve(y_test[:, i], y_score[:, i])
-        fpr["micro"], tpr["micro"], _  = roc_curve(y_test.ravel(), y_score.ravel())
-        all_fpr = np.unique(np.concatenate([fpr[i] for i in range(n_classes)]))
-        mean_tpr = np.zeros_like(all_fpr)
-        for i in range(n_classes):
-            mean_tpr += interp(all_fpr, fpr[i], tpr[i])
-        mean_tpr /= n_classes
-        fpr["macro"] = all_fpr
-        tpr["macro"] = mean_tpr
-        micro_mean_tpr += interp(micro_mean_fpr, fpr["micro"], tpr["micro"])
-        macro_mean_tpr += interp(micro_mean_fpr, fpr["macro"], tpr["macro"])
-        micro_mean_tpr[0] = 0.0
-        macro_mean_tpr[0] = 0.0
-    micro_mean_tpr /= fold
-    macro_mean_tpr /= fold
-    micro_mean_tpr[-1] = 1.0
-    macro_mean_tpr[-1] = 1.0
-    micro_auc = auc(micro_mean_fpr, micro_mean_tpr)
-    macro_auc = auc(macro_mean_fpr, macro_mean_tpr)
-    return micro_mean_fpr, micro_mean_tpr, micro_auc,\
-            macro_mean_fpr, macro_mean_tpr, macro_auc
+            fpr, tpr, _ = roc_curve(y_test[:, i], y_score[:, i])
+            mean_fpr[i] = np.linspace(0, 1, 100)
+            if i not in mean_tpr:
+                roc_auc[i] = [auc(fpr, tpr),]
+                mean_tpr[i] = 0.0
+            else:
+                roc_auc[i] += [auc(fpr, tpr),]
+            mean_tpr[i] += interp(mean_fpr[i], fpr, tpr)
+            mean_tpr[i][0] = 0.0
+    for i in range(n_classes):
+        mean_tpr[i] /= fold
+        mean_tpr[i][-1] = 1.0
+        roc_auc[i] = round(sum(roc_auc[i])/fold, 4)
+    all_fpr = np.unique(np.concatenate([mean_fpr[i] for i in range(n_classes)]))
+    all_tpr_mean = mean_tpr = np.zeros_like(all_fpr)
+    for i in range(n_classes):
+        all_tpr_mean += interp(all_fpr, mean_fpr[i], mean_tpr[i])
+    all_tpr_mean /= n_classes
+    mean_tpr['macro'] = all_tpr
+    mean_fpr['macro'] = all_fpr
+    roc_auc['macro'] = auc(mean_fpr['macro'], mean_tpr['macro'])
+    return mean_tpr,mean_fpr,roc_auc
 
 def BinaClass(feature, response, model, fold):
     skf = StratifiedKFold(n_splits=fold, random_state=None, shuffle=False)
@@ -181,11 +180,11 @@ def MakeROC(tp, feature, response, model, test_x=None, test_y=None, fold=5, boot
     fig.savefig('{}_ROC.pdf'.format(re.split('\(', str(model))[0]))
 
 def RunValidator(tp, feature, response, model, fold, ax, lb, color, bootstrap=1):
+    colors = ['deeppink', 'navy', 'aqua', 'darkorange', 'cornflowerblue']
     if tp == 'multi':
-        micro_mean_fpr, micro_mean_tpr, micro_auc, macro_mean_fpr, macro_mean_tpr, macro_auc =\
-                MultiClass(feature, response, model, fold=fold)
-        PlotROC(ax, 'micro-average ', 'deeppink', micro_mean_fpr, micro_mean_tpr, micro_auc)
-        PlotROC(ax, 'macro-average ', 'navy', macro_mean_fpr, macro_mean_tpr, macro_auc)
+        mean_tpr, mearn_fpr, roc_auc = MultiClass(feature, response, model, fold=fold)
+        for i in range(len(mean_tpr)):
+            PlotROC(ax, 'Class '+str(i), colors[i], mearn_fpr[i], mean_tpr[i], roc_auc[i], '0')
     elif tp == 'bina':
         if bootstrap == 1:
             mean_fpr, mean_tpr, mean_auc, ci, precision, recall, average_precision = BinaClass(feature, response, model, fold)

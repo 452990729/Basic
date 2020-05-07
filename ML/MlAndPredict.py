@@ -24,22 +24,33 @@ def RunLasso(feature, response):
     coef = pd.Series(clf.coef_, index = feature.columns)
     coef.to_csv('Lasso.coef.txt', sep='\t', index=True, header=False)
 
-def GetSVM():
-    SVM = svm.SVC(C=0.5, probability=True, class_weight='balanced')
+def GetSVM(tp):
+    if tp == 'bina':
+        SVM = svm.SVC(C=0.5, probability=True, class_weight='balanced')
+    elif tp == 'multi':
+        SVM = svm.LinearSVC(C=0.5, class_weight='balanced', multi_class='ovr')
     return SVM
 
 def GetRF():
     RandomForest = RandomForestClassifier(n_estimators=50, max_depth=10, oob_score=True, class_weight='balanced')
     return RandomForest
 
-def GetGDBT():
-    GDBT = GradientBoostingClassifier(n_estimators=100, learning_rate=0.1, max_depth=3)
+def GetGDBT(tp):
+    if tp == 'bina':
+        GDBT = GradientBoostingClassifier(n_estimators=100, learning_rate=0.1, max_depth=3)
+    elif tp == 'multi':
+        GDBT = GradientBoostingClassifier(n_estimators=100, learning_rate=0.1, max_depth=3)
     return GDBT
 
-def GetLogistic():
-    Logistic = LogisticRegressionCV(multi_class="ovr",fit_intercept=True,\
+def GetLogistic(tp):
+    if tp == 'bina':
+        Logistic = LogisticRegressionCV(fit_intercept=True,\
                                Cs=np.logspace(-2,2,20),cv=2,penalty="l2",\
                                solver="lbfgs",tol=0.01,class_weight='balanced')
+    elif tp == 'multi':
+        Logistic = LogisticRegressionCV(multi_class="ovr",fit_intercept=True,\
+                                        Cs=np.logspace(-2,2,20),cv=2,penalty="l2",\
+                                        solver="lbfgs",tol=0.01,class_weight='balanced')
     return Logistic
 
 def MakePredict(train_x, train_y, test_x, test_y, model):
@@ -68,19 +79,20 @@ def main():
         testy = GetData(argv['testy'])
         testy = testy.loc[testx.index,:]
         if argv['m'] == 'svm':
-            model = GetSVM()
+            model = GetSVM(argv['t'])
         elif argv['m'] == 'rf':
             model = GetRF()
         elif argv['m'] == 'logistic':
-            model = GetLogistic()
+            model = GetLogistic(argv['t'])
         elif argv['m'] == 'gdbt':
-            model = GetGDBT()
+            model = GetGDBT(argv['t'])
         MakePredict(feature, response, testx, testy, model)
     elif argv['method'][0] == 'validator':
-        Validator(argv['t'], feature, response, GetSVM(), argv['f'], argv['b'])
-        Validator(argv['t'], feature, response, GetRF(), argv['f'], argv['b'])
-        Validator(argv['t'], feature, response, GetLogistic(), argv['f'], argv['b'])
-        Validator(argv['t'], feature, response, GetGDBT(), argv['f'], argv['b'])
+        Validator(argv['t'], feature, response, GetSVM(argv['t']), argv['f'], argv['b'])
+        Validator(argv['t'], feature, response, GetLogistic(argv['t']), argv['f'], argv['b'])
+        Validator(argv['t'], feature, response, GetGDBT(argv['t']), argv['f'], argv['b'])
+        if argv['t'] == 'bina':
+            Validator(argv['t'], feature, response, GetRF(), argv['f'], argv['b'])
 
 
 if __name__ == '__main__':

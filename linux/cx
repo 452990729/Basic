@@ -1,0 +1,127 @@
+#!/mnt/dfc_data1/software/anaconda2/envs/perl-5.26.2.1/bin/perl
+
+
+use Getopt::Long;
+use Pod::Usage;
+use Data::Dumper;
+my ($help);
+
+GetOptions(
+	'help'=>\$help,
+	'list|l:s'=>\$list,
+);
+
+pod2usage 1 if($help);
+
+my %list = (
+	'p' => 0,
+	'vf' => 0,
+);
+
+for(split /,/,$list){
+	if(/(\w+)=(\S+)/){
+		my ($n,$v) = ($1,$2);
+		if($n eq 'vf' && $v =~ /([\d\.]+)([GM])/i){
+			if(uc $2 eq 'G'){
+				$list{$n} = $1;
+			}elsif(uc $2 eq 'M'){
+				$list{$n} = $1 / 1000;
+			}else{
+				$list{$n} = 0;
+			}
+		}else{
+			$list{$n} = $v;
+		}
+	}
+}
+
+# print Dumper \%list;
+
+my $user = shift ;
+$user = $ENV{'USER'} unless(defined $user);
+
+my %nodes;
+open FL,"qselect -U $user |  cut -d \@ -f 2 |";
+while(<FL>){
+	chomp;
+	s/.local//;
+	$nodes{$_} = 1;
+}
+close FL;
+
+my $node = '';
+open FL,"qhost -q -F vf,p |";
+while(<FL>){
+	chomp;
+	if(/^(\w+)/){
+		my ($cpu,$load,$memt);
+		($node,$cpu,$load,$memt) = (split /\s+/)[0,2,3,4];
+		$res{$node}{'cpu'} = $cpu;
+		$res{$node}{'load'} = $load;
+		$res{$node}{'memt'} = $memt;
+	}elsif(/virtual_free=([\d\.]+)([MG]*)/){
+		my $unit = $2 ? $2 : "M";
+		my $num = $1;
+		if($unit eq 'M'){
+			$num /= 1000;
+			$unit = "G";
+		}
+		$res{$node}{'vf'} = $num;
+	}elsif(/^\s+(\S+\.q)\s+BIP\s+\S+\/(\S+)\s+(\S*)/){
+		push @{$res{$node}{'queue'}},$1;
+		$res{$node}{'cput'} = $2;
+		if($3 =~ /a/){
+			$res{$node}{'overload'} = 'a';
+		}elsif($3 =~ /o/){
+			$res{$node}{'overload'} = 'o';
+		}elsif($3 =~ /E/){
+			$res{$node}{'overload'} = 'E';
+		}else{
+			$res{$node}{'overload'} = 'N';
+		}
+	}
+}
+close FL;
+
+for(sort {&sort1($a) cmp &sort1($b) || &sort2($a) <=> &sort2($b)} keys %nodes){
+	my @qs = @{$res{$_}{'queue'}};
+	my $qs = join ",",@qs;
+
+	my $node = $_;
+
+	$node =~ s/(tjbnode\d+)/[$1]/;
+	$node =~ s/(tjnode\d+)/<$1>/;
+
+	if($res{$_}{'load'} eq '-'){
+		$node = "${node}**";
+	}elsif($res{$_}{'overload'} ne 'N'){
+		$node = "${node}*".$res{$_}{'overload'};
+	}
+	printf "%-18s%3s / %-3s%10.1f / %-10.1f%5s$qs\n",$node,$res{$_}{'cpu'},$res{$_}{'cput'},$res{$_}{'vf'},$res{$_}{'memt'},'' if($res{$_}{'cpu'} >= $list{'p'} && $res{$_}{'vf'} >= $list{'vf'});
+}
+
+sub sort1 {
+	my $cc = $_[0];
+	$cc =~ s/\d+//;
+	return $cc;
+} 
+
+sub sort2 {
+	my $cc = $_[0];
+	$cc =~ s/[a-z]+//;
+	return $cc;
+} 
+
+=head1 SYNOPSIS
+
+ cc.pl --help
+
+=head1 OPTIONS
+
+ -h/--help        help
+ -l/--list        vf=1g,p=1
+
+ **  marks overload / dead nodes
+
+=cut
+
