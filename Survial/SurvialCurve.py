@@ -56,6 +56,7 @@ def MakePlot(pd_surval, lb, time_label, pd_class=False):
             index = pd_class[pd_class.iloc[:,0]==cls].index
             pd_Data = pd_surval.loc[index, :]
             pd_Data.drop(pd_Data[np.isnan(pd_Data['OS'])].index, inplace=True)
+            pd_Data = pd_Data.dropna(axis=0,how='any')
             dict_tmp[cls] = deepcopy(pd_Data)
             kmf.fit(pd_Data['OS'], pd_Data['status'], label=cls)
             kmf.plot(ax=axe, ci_show=False)

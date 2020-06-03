@@ -28,13 +28,14 @@ def CoxAnalysis(pd_data, pd_surval, tp):
         pd_out = ''
         for i in range(pd_data.shape[1]):
             df = pd_surval.T.append(pd_data.iloc[:,i].T).T
-            cph.fit(df, 'OS', event_col='status', step_size=0.1)
+            cph.fit(df, 'OS', event_col='status')
             if type(pd_out) == str:
                 pd_out = cph.summary
             else:
                 pd_out=pd_out.append(cph.summary)
     elif tp == 'multivariable':
         df = pd_data.T.append(pd_surval.T).T
+        df = df.dropna(axis=0,how='any')
         cph.fit(df, 'OS', event_col='status', step_size=0.1)
         pd_out = cph.summary
     pd_out.to_csv('CoxRegress.txt', sep='\t', header=True, index=True)

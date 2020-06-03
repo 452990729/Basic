@@ -58,7 +58,8 @@ def MakePlot(pd_data, title, xlabel, ylabel, x, y, huge, swarm, violin, ylim, fi
     axe.set_yticks(axe.get_yticks()[1:-1])
     axe.set_xlabel(xlabel, size = 40)
     axe.set_ylabel(ylabel, size = 40)
-    plt.xticks(size = 30, rotation=40)
+#    plt.xticks(size = 30, rotation=40)
+    plt.xticks(size = 30)
     plt.yticks(size = 30)
     plt.savefig(outfile, dpi=300)
 

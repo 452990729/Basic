@@ -10,7 +10,7 @@ def ReadCls(file_in):
     dict_cls = {}
     with open(file_in, 'r') as f:
         for line in f:
-            list_split = re.split('\t', line.strip())
+            list_split = re.split('\t', line.strip('\n'))
             if list_split[0]:
                 dict_cls[list_split[0]] = list_split[1]
     return dict_cls
