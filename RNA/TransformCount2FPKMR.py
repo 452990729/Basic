@@ -36,11 +36,11 @@ def Process(pd_data, dict_len):
     pd_out = pd.DataFrame(index=list_tmp, columns=pd_data.columns)
     pd_data = pd_data.loc[list_tmp, :]
     pd_total = pd_data.sum()
-    out.write('\t'.join(pd_data.columns)+'\n')
+    out.write('\t'+'\t'.join(pd_data.columns)+'\n')
     for index in pd_data.index:
         list_tmp = [index,]
         for column in pd_data.columns:
-            total = round(pd_total[column]/1000000, 4)
+            total = round(pd_total[column]/1000000.0, 4)
             list_tmp.append(str(Count2FPKM(pd_data.loc[index, column], total, dict_len[index])))
 #            pd_out.loc[index, column] = Count2FPKM(pd_data.loc[index, column], total, dict_len[index])
         out.write('\t'.join(list_tmp)+'\n')
