@@ -57,7 +57,7 @@ if(argv$breakup=='NA') {
 if(argv$star=='NA') {
     star = FALSE
 } else {
-    star <- matrix(ifelse(abs(dataExpr) > as.numeric(argv$star), "*", ""), nrow(dataExpr))
+    star <- matrix(ifelse(abs(dataExpr) < as.numeric(argv$star), "*", ""), nrow(dataExpr))
 }
 
 color <- colorRampPalette(c('#436eee', 'white', '#EE0000'))(100)
