@@ -24,10 +24,12 @@ def SelectFeature(X, Y, model, num):
         estimator  = LogisticRegression(class_weight='balanced')
         selector = RFE(estimator=estimator, n_features_to_select=num).fit(X, np.array(Y.T)[0])
         X_filter = X[X.columns[selector.get_support(indices=True)]]
+        X_filter.to_csv('FeatureFilterByModle.txt', sep='\t', header=True, index=True)
     elif model == 'SVM':
         estimator = SVC(class_weight='balanced')
         selector = RFE(estimator=estimator, n_features_to_select=num).fit(X, np.array(Y.T)[0])
         X_filter = X[X.columns[selector.get_support(indices=True)]]
+        X_filter.to_csv('FeatureFilterByModle.txt', sep='\t', header=True, index=True)
     elif model == 'Lasso':
         RunLasso(X, Y)
 #    X_filter.to_csv('FeatureFilterByModle.txt', sep='\t', header=True, index=True)

@@ -51,7 +51,7 @@ def RunShell(list_shell, list_count, outpath, core):
 
 def main():
     parser = argparse.ArgumentParser(description="Get ReadCounts From Bam/Sam by gff")
-    parser.add_argument('-i', help='the input bam files, seperate by :', required=True)
+    parser.add_argument('-i', help='the input bam files, seperate by ,', required=True)
     parser.add_argument('-g', help='the input gff file', required=True)
     parser.add_argument('-o', help='the output path', required=True)
     parser.add_argument('-t', help='the threads used <<6>>', default=6)
@@ -66,7 +66,7 @@ def main():
     parser.add_argument('-stranded', help='whether the data is from a strand-specific assay <<no>>',\
                         choices=['yes', 'no'], default='no')
     argv=vars(parser.parse_args())
-    list_shell, list_count = MakeCountShell(re.split(':', argv['i']), argv['g'], argv['o'],\
+    list_shell, list_count = MakeCountShell(re.split(',', argv['i']), argv['g'], argv['o'],\
                                            argv['featuretype'], argv['idattr'], argv['mode'],\
                                            argv['order'], argv['stranded'])
     RunShell(list_shell, list_count, argv['o'], argv['t'])

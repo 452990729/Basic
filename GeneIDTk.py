@@ -15,7 +15,7 @@ def ReadGff(GFF):
     dict_gene = {}
     dict_ens = {}
     for line in GFF_Reader(GFF):
-        dict_ens[line.attr['gene_id']] = line
+        dict_ens[re.split('\.', line.attr['gene_id'])[0]] = line
         dict_gene[line.attr['gene_name']] = line
     return dict_gene, dict_ens
 
@@ -43,7 +43,7 @@ def GetType(dict_gene, dict_ens, pd_data, list_tp):
 
 def Anno(dict_gene, dict_ens, pd_data):
     pd_type = pd.DataFrame(index=pd_data.index ,columns=['GeneBiotype'])
-    pd_anno = pd.DataFrame(index=pd_data.index ,columns=['Interpro'])
+#    pd_anno = pd.DataFrame(index=pd_data.index ,columns=['Interpro'])
     if pd_data.index[0].startswith('ENS'):
         pd_id = pd.DataFrame(index=pd_data.index ,columns=['GeneSymbol'])
         dict_in = dict_ens
@@ -55,15 +55,15 @@ def Anno(dict_gene, dict_ens, pd_data):
     for key in pd_data.index:
         if key in dict_in:
             pd_type.loc[key] = dict_in[key].attr['gene_type']
-            pd_anno.loc[key] = dict_in[key].attr['interpro']
+#            pd_anno.loc[key] = dict_in[key].attr['interpro']
             pd_id.loc[key] = dict_in[key].attr[lb]
         else:
             pd_type.loc[key] = ''
-            pd_anno.loc[key] = ''
+#            pd_anno.loc[key] = ''
             pd_id.loc[key] = ''
     pd_data.insert(0, lb, pd_id)
     pd_data.insert(1, 'GeneBiotype', pd_type)
-    pd_data.insert(2, 'Interpro', pd_anno)
+#    pd_data.insert(2, 'Interpro', pd_anno)
     return pd_data
 
 def Switch(dict_gene, dict_ens, pd_data):

@@ -1,0 +1,682 @@
+Adam28	Activated B cell	Adaptive
+Cd180	Activated B cell	Adaptive
+Cd79b	Activated B cell	Adaptive
+Blk	Activated B cell	Adaptive
+Cd19	Activated B cell	Adaptive
+Ms4a1	Activated B cell	Adaptive
+Tnfrsf17	Activated B cell	Adaptive
+Ighm	Activated B cell	Adaptive
+Gng7	Activated B cell	Adaptive
+Mical3	Activated B cell	Adaptive
+Spib	Activated B cell	Adaptive
+H2-Ob	Activated B cell	Adaptive
+Igkc	Activated B cell	Adaptive
+Pnoc	Activated B cell	Adaptive
+Fcrls	Activated B cell	Adaptive
+Bach2	Activated B cell	Adaptive
+Cr2	Activated B cell	Adaptive
+Tcl1	Activated B cell	Adaptive
+Akna	Activated B cell	Adaptive
+Arhgap25	Activated B cell	Adaptive
+Gm13304	Activated B cell	Adaptive
+Cd27	Activated B cell	Adaptive
+Cd38	Activated B cell	Adaptive
+Clec9a	Activated B cell	Adaptive
+Aim2	Activated CD4 T cell	Adaptive
+Birc3	Activated CD4 T cell	Adaptive
+Brip1	Activated CD4 T cell	Adaptive
+Ccl20	Activated CD4 T cell	Adaptive
+Ccl4	Activated CD4 T cell	Adaptive
+Ccl5	Activated CD4 T cell	Adaptive
+Ccnb1	Activated CD4 T cell	Adaptive
+Ccr7	Activated CD4 T cell	Adaptive
+Dusp2	Activated CD4 T cell	Adaptive
+Esco2	Activated CD4 T cell	Adaptive
+Ets1	Activated CD4 T cell	Adaptive
+Exo1	Activated CD4 T cell	Adaptive
+Exoc6	Activated CD4 T cell	Adaptive
+Iars	Activated CD4 T cell	Adaptive
+Itk	Activated CD4 T cell	Adaptive
+Kif11	Activated CD4 T cell	Adaptive
+Kntc1	Activated CD4 T cell	Adaptive
+Nuf2	Activated CD4 T cell	Adaptive
+Prc1	Activated CD4 T cell	Adaptive
+Psat1	Activated CD4 T cell	Adaptive
+Rgs1	Activated CD4 T cell	Adaptive
+Rtkn2	Activated CD4 T cell	Adaptive
+Samsn1	Activated CD4 T cell	Adaptive
+Sell	Activated CD4 T cell	Adaptive
+Trat1	Activated CD4 T cell	Adaptive
+Adrm1	Activated CD8 T cell	Adaptive
+Ahsa1	Activated CD8 T cell	Adaptive
+C1galt1c1	Activated CD8 T cell	Adaptive
+Cct6b	Activated CD8 T cell	Adaptive
+Cd37	Activated CD8 T cell	Adaptive
+Cd3d	Activated CD8 T cell	Adaptive
+Cd3e	Activated CD8 T cell	Adaptive
+Cd3g	Activated CD8 T cell	Adaptive
+Cd69	Activated CD8 T cell	Adaptive
+Cd8a	Activated CD8 T cell	Adaptive
+Cetn3	Activated CD8 T cell	Adaptive
+Cse1l	Activated CD8 T cell	Adaptive
+Gemin6	Activated CD8 T cell	Adaptive
+Gpt2	Activated CD8 T cell	Adaptive
+Gzma	Activated CD8 T cell	Adaptive
+Gzmk	Activated CD8 T cell	Adaptive
+Il2rb	Activated CD8 T cell	Adaptive
+Lck	Activated CD8 T cell	Adaptive
+Mpzl1	Activated CD8 T cell	Adaptive
+Nkg7	Activated CD8 T cell	Adaptive
+Pik3ip1	Activated CD8 T cell	Adaptive
+Ptrh2	Activated CD8 T cell	Adaptive
+Timm13	Activated CD8 T cell	Adaptive
+Zap70	Activated CD8 T cell	Adaptive
+Abhd3	Central memory CD4 T cell	Adaptive
+Ahnak	Central memory CD4 T cell	Adaptive
+Aqp3	Central memory CD4 T cell	Adaptive
+Pgghg	Central memory CD4 T cell	Adaptive
+Bmi1	Central memory CD4 T cell	Adaptive
+Bzw2	Central memory CD4 T cell	Adaptive
+Cd63	Central memory CD4 T cell	Adaptive
+Col4a1	Central memory CD4 T cell	Adaptive
+Cyld	Central memory CD4 T cell	Adaptive
+Elmo2	Central memory CD4 T cell	Adaptive
+Fyn	Central memory CD4 T cell	Adaptive
+Glipr1	Central memory CD4 T cell	Adaptive
+Gss	Central memory CD4 T cell	Adaptive
+Ifitm1	Central memory CD4 T cell	Adaptive
+Itgb1	Central memory CD4 T cell	Adaptive
+Itgb2	Central memory CD4 T cell	Adaptive
+Klf5	Central memory CD4 T cell	Adaptive
+Lsp1	Central memory CD4 T cell	Adaptive
+Ndufb9	Central memory CD4 T cell	Adaptive
+Pkm	Central memory CD4 T cell	Adaptive
+Sfxn3	Central memory CD4 T cell	Adaptive
+Sirpa	Central memory CD4 T cell	Adaptive
+Smad4	Central memory CD4 T cell	Adaptive
+Stx4a	Central memory CD4 T cell	Adaptive
+Tradd	Central memory CD4 T cell	Adaptive
+Vim	Central memory CD4 T cell	Adaptive
+Xrcc6	Central memory CD4 T cell	Adaptive
+Actn4	Central memory CD8 T cell	Adaptive
+Adam12	Central memory CD8 T cell	Adaptive
+Adcy9	Central memory CD8 T cell	Adaptive
+F13a1	Central memory CD8 T cell	Adaptive
+Fcer1g	Central memory CD8 T cell	Adaptive
+Fcgr4	Central memory CD8 T cell	Adaptive
+Fgf7	Central memory CD8 T cell	Adaptive
+Fkbp4	Central memory CD8 T cell	Adaptive
+Glud1	Central memory CD8 T cell	Adaptive
+Gm2a	Central memory CD8 T cell	Adaptive
+Gusb	Central memory CD8 T cell	Adaptive
+Il1rn	Central memory CD8 T cell	Adaptive
+Nol11	Central memory CD8 T cell	Adaptive
+Ntrk1	Central memory CD8 T cell	Adaptive
+Rara	Central memory CD8 T cell	Adaptive
+Rnf128	Central memory CD8 T cell	Adaptive
+Siglec1	Central memory CD8 T cell	Adaptive
+Tnfrsf11a	Central memory CD8 T cell	Adaptive
+Tox4	Central memory CD8 T cell	Adaptive
+Gm11808	Central memory CD8 T cell	Adaptive
+Ulbp1	Central memory CD8 T cell	Adaptive
+Atm	Effector memeory CD4 T cell	Adaptive
+Casp3	Effector memeory CD4 T cell	Adaptive
+Casq1	Effector memeory CD4 T cell	Adaptive
+Cd300e	Effector memeory CD4 T cell	Adaptive
+Dars	Effector memeory CD4 T cell	Adaptive
+Dock9	Effector memeory CD4 T cell	Adaptive
+Exosc9	Effector memeory CD4 T cell	Adaptive
+Ezh2	Effector memeory CD4 T cell	Adaptive
+Gde1	Effector memeory CD4 T cell	Adaptive
+Il34	Effector memeory CD4 T cell	Adaptive
+Ncoa4	Effector memeory CD4 T cell	Adaptive
+Nefl	Effector memeory CD4 T cell	Adaptive
+Pdgfrl	Effector memeory CD4 T cell	Adaptive
+Ptgs1	Effector memeory CD4 T cell	Adaptive
+Reps1	Effector memeory CD4 T cell	Adaptive
+Scg2	Effector memeory CD4 T cell	Adaptive
+Tal1	Effector memeory CD4 T cell	Adaptive
+Tfec	Effector memeory CD4 T cell	Adaptive
+Tipin	Effector memeory CD4 T cell	Adaptive
+Tpk1	Effector memeory CD4 T cell	Adaptive
+Uqcrb	Effector memeory CD4 T cell	Adaptive
+Usp9y	Effector memeory CD4 T cell	Adaptive
+Wipf1	Effector memeory CD4 T cell	Adaptive
+Zcrb1	Effector memeory CD4 T cell	Adaptive
+Acap1	Effector memeory CD8 T cell	Adaptive
+Apol7a	Effector memeory CD8 T cell	Adaptive
+Arhgap10	Effector memeory CD8 T cell	Adaptive
+Atp10d	Effector memeory CD8 T cell	Adaptive
+C3ar1	Effector memeory CD8 T cell	Adaptive
+Ccr5	Effector memeory CD8 T cell	Adaptive
+Cd160	Effector memeory CD8 T cell	Adaptive
+Cd55	Effector memeory CD8 T cell	Adaptive
+Cflar	Effector memeory CD8 T cell	Adaptive
+Cmklr1	Effector memeory CD8 T cell	Adaptive
+Dapp1	Effector memeory CD8 T cell	Adaptive
+Fcrl6	Effector memeory CD8 T cell	Adaptive
+Flt3l	Effector memeory CD8 T cell	Adaptive
+Gzmm	Effector memeory CD8 T cell	Adaptive
+Hapln3	Effector memeory CD8 T cell	Adaptive
+Ifi211	Effector memeory CD8 T cell	Adaptive
+Lime1	Effector memeory CD8 T cell	Adaptive
+Ltk	Effector memeory CD8 T cell	Adaptive
+Nfkbia	Effector memeory CD8 T cell	Adaptive
+Setd7	Effector memeory CD8 T cell	Adaptive
+Sik1	Effector memeory CD8 T cell	Adaptive
+Trib2	Effector memeory CD8 T cell	Adaptive
+Acp5	Gamma delta T cell	Adaptive
+Aqp9	Gamma delta T cell	Adaptive
+Ccl3	Gamma delta T cell	Adaptive
+Cd209a	Gamma delta T cell	Adaptive
+Cd36	Gamma delta T cell	Adaptive
+Cdk5	Gamma delta T cell	Adaptive
+Il10rb	Gamma delta T cell	Adaptive
+Lgals1	Gamma delta T cell	Adaptive
+Mapk7	Gamma delta T cell	Adaptive
+Klhl7	Gamma delta T cell	Adaptive
+Krt80	Gamma delta T cell	Adaptive
+Lamc1	Gamma delta T cell	Adaptive
+Lcorl	Gamma delta T cell	Adaptive
+Lmnb1	Gamma delta T cell	Adaptive
+Mpl	Gamma delta T cell	Adaptive
+Fabp1	Gamma delta T cell	Adaptive
+Fabp5	Gamma delta T cell	Adaptive
+Fadd	Gamma delta T cell	Adaptive
+Mfap3l	Gamma delta T cell	Adaptive
+Minpp1	Gamma delta T cell	Adaptive
+Rps24	Gamma delta T cell	Adaptive
+Rps9	Gamma delta T cell	Adaptive
+Dbnl	Gamma delta T cell	Adaptive
+Cd22	Immature  B cell	Adaptive
+Cybb	Immature  B cell	Adaptive
+Fcrl5	Immature  B cell	Adaptive
+Fcrla	Immature  B cell	Adaptive
+Hdac9	Immature  B cell	Adaptive
+Hvcn1	Immature  B cell	Adaptive
+Ncf1	Immature  B cell	Adaptive
+P2ry10	Immature  B cell	Adaptive
+AC133103.3	Immature  B cell	Adaptive
+Txnip	Immature  B cell	Adaptive
+Stap1	Immature  B cell	Adaptive
+Tagap	Immature  B cell	Adaptive
+Zcchc2	Immature  B cell	Adaptive
+Aicda	Memory B cell	Adaptive
+Ccna2	Memory B cell	Adaptive
+Cdkn3	Memory B cell	Adaptive
+Clcn5	Memory B cell	Adaptive
+Enpp1	Memory B cell	Adaptive
+Fcer1a	Memory B cell	Adaptive
+Myc	Memory B cell	Adaptive
+Runx2	Memory B cell	Adaptive
+Sorl1	Memory B cell	Adaptive
+Sox5	Memory B cell	Adaptive
+Stat5a	Memory B cell	Adaptive
+Stat5b	Memory B cell	Adaptive
+Tlr9	Memory B cell	Adaptive
+Ccl3	Regulatory T cell	Adaptive
+Cd72	Regulatory T cell	Adaptive
+Clec5a	Regulatory T cell	Adaptive
+Foxp3	Regulatory T cell	Adaptive
+Itga4	Regulatory T cell	Adaptive
+L1cam	Regulatory T cell	Adaptive
+Lipa	Regulatory T cell	Adaptive
+Lrp1	Regulatory T cell	Adaptive
+Lrrc42	Regulatory T cell	Adaptive
+Marco	Regulatory T cell	Adaptive
+Mmp12	Regulatory T cell	Adaptive
+Mrc1	Regulatory T cell	Adaptive
+Ms4a6b	Regulatory T cell	Adaptive
+Pelo	Regulatory T cell	Adaptive
+Plek	Regulatory T cell	Adaptive
+Prss23	Regulatory T cell	Adaptive
+Ptgir	Regulatory T cell	Adaptive
+St8sia4	Regulatory T cell	Adaptive
+Stab1	Regulatory T cell	Adaptive
+B3gat1	T follicular helper cell	Adaptive
+Cdk5r1	T follicular helper cell	Adaptive
+Pdcd1	T follicular helper cell	Adaptive
+Bcl6	T follicular helper cell	Adaptive
+Cd200	T follicular helper cell	Adaptive
+Cd83	T follicular helper cell	Adaptive
+Cd84	T follicular helper cell	Adaptive
+Fgf2	T follicular helper cell	Adaptive
+Gpr18	T follicular helper cell	Adaptive
+Cebpa	T follicular helper cell	Adaptive
+Clec10a	T follicular helper cell	Adaptive
+Clec4a1	T follicular helper cell	Adaptive
+Csf1r	T follicular helper cell	Adaptive
+Ctss	T follicular helper cell	Adaptive
+Dpp4	T follicular helper cell	Adaptive
+Lrrc32	T follicular helper cell	Adaptive
+Mc5r	T follicular helper cell	Adaptive
+Mill2	T follicular helper cell	Adaptive
+Ncam1	T follicular helper cell	Adaptive
+Nrp1	T follicular helper cell	Adaptive
+Pdcd1lg2	T follicular helper cell	Adaptive
+Pdcd6	T follicular helper cell	Adaptive
+Prdx1	T follicular helper cell	Adaptive
+Rae1	T follicular helper cell	Adaptive
+Raet1e	T follicular helper cell	Adaptive
+Siglece	T follicular helper cell	Adaptive
+Siglece	T follicular helper cell	Adaptive
+Tyro3	T follicular helper cell	Adaptive
+Chst12	T follicular helper cell	Adaptive
+Clic3	T follicular helper cell	Adaptive
+Ivns1abp	T follicular helper cell	Adaptive
+Lgmn	T follicular helper cell	Adaptive
+Cd70	Type 1 T helper cell	Adaptive
+Tbx21	Type 1 T helper cell	Adaptive
+Adam8	Type 1 T helper cell	Adaptive
+Ahcyl2	Type 1 T helper cell	Adaptive
+Alcam	Type 1 T helper cell	Adaptive
+B3galnt1	Type 1 T helper cell	Adaptive
+Bbs12	Type 1 T helper cell	Adaptive
+Bst1	Type 1 T helper cell	Adaptive
+Cd151	Type 1 T helper cell	Adaptive
+Cd47	Type 1 T helper cell	Adaptive
+Cd48	Type 1 T helper cell	Adaptive
+Cd52	Type 1 T helper cell	Adaptive
+Cd53	Type 1 T helper cell	Adaptive
+Cd59a	Type 1 T helper cell	Adaptive
+Cd6	Type 1 T helper cell	Adaptive
+Cd7	Type 1 T helper cell	Adaptive
+Cd96	Type 1 T helper cell	Adaptive
+Chrm3	Type 1 T helper cell	Adaptive
+Clec7a	Type 1 T helper cell	Adaptive
+Col23a1	Type 1 T helper cell	Adaptive
+Col4a4	Type 1 T helper cell	Adaptive
+Col5a3	Type 1 T helper cell	Adaptive
+Dab1	Type 1 T helper cell	Adaptive
+Dleu7	Type 1 T helper cell	Adaptive
+Doc2b	Type 1 T helper cell	Adaptive
+Emp1	Type 1 T helper cell	Adaptive
+F12	Type 1 T helper cell	Adaptive
+Furin	Type 1 T helper cell	Adaptive
+Gab3	Type 1 T helper cell	Adaptive
+Gatm	Type 1 T helper cell	Adaptive
+Gfpt2	Type 1 T helper cell	Adaptive
+Gpr25	Type 1 T helper cell	Adaptive
+Grem2	Type 1 T helper cell	Adaptive
+Havcr1	Type 1 T helper cell	Adaptive
+Hsd11b1	Type 1 T helper cell	Adaptive
+Hunk	Type 1 T helper cell	Adaptive
+Igf2	Type 1 T helper cell	Adaptive
+Rcsd1	Type 1 T helper cell	Adaptive
+Ryr1	Type 1 T helper cell	Adaptive
+Sav1	Type 1 T helper cell	Adaptive
+Sele	Type 1 T helper cell	Adaptive
+Selp	Type 1 T helper cell	Adaptive
+Sh3kbp1	Type 1 T helper cell	Adaptive
+Sit1	Type 1 T helper cell	Adaptive
+Slc35b3	Type 1 T helper cell	Adaptive
+Siglecg	Type 1 T helper cell	Adaptive
+Skap1	Type 1 T helper cell	Adaptive
+Thumpd2	Type 1 T helper cell	Adaptive
+Tigit	Type 1 T helper cell	Adaptive
+Zeb2	Type 1 T helper cell	Adaptive
+Enc1	Type 1 T helper cell	Adaptive
+Fbxo30	Type 1 T helper cell	Adaptive
+Fcgr2b	Type 1 T helper cell	Adaptive
+Stac	Type 1 T helper cell	Adaptive
+Ltc4s	Type 1 T helper cell	Adaptive
+Man1b1	Type 1 T helper cell	Adaptive
+Mdh1	Type 1 T helper cell	Adaptive
+Mmd	Type 1 T helper cell	Adaptive
+Rgs16	Type 1 T helper cell	Adaptive
+Il12a	Type 1 T helper cell	Adaptive
+P2rx5	Type 1 T helper cell	Adaptive
+Adgre5	Type 1 T helper cell	Adaptive
+Itgb4	Type 1 T helper cell	Adaptive
+Metrnl	Type 1 T helper cell	Adaptive
+Tnfrsf1a	Type 1 T helper cell	Adaptive
+Irf1	Type 1 T helper cell	Adaptive
+Htr2b	Type 1 T helper cell	Adaptive
+Cald1	Type 1 T helper cell	Adaptive
+Mocos	Type 1 T helper cell	Adaptive
+Traf3ip2	Type 1 T helper cell	Adaptive
+Tlr8	Type 1 T helper cell	Adaptive
+Traf1	Type 1 T helper cell	Adaptive
+Dusp14	Type 1 T helper cell	Adaptive
+Il17a	Type 17 T helper cell	Adaptive
+Il17ra	Type 17 T helper cell	Adaptive
+Car2	Type 17 T helper cell	Adaptive
+Ccdc65	Type 17 T helper cell	Adaptive
+Il17c	Type 17 T helper cell	Adaptive
+Il17f	Type 17 T helper cell	Adaptive
+Il17rc	Type 17 T helper cell	Adaptive
+Il17re	Type 17 T helper cell	Adaptive
+Il23a	Type 17 T helper cell	Adaptive
+Ildr1	Type 17 T helper cell	Adaptive
+Lonrf3	Type 17 T helper cell	Adaptive
+Sh2d6	Type 17 T helper cell	Adaptive
+Tnip2	Type 17 T helper cell	Adaptive
+Abca1	Type 17 T helper cell	Adaptive
+Abcb1b	Type 17 T helper cell	Adaptive
+Adamts12	Type 17 T helper cell	Adaptive
+Ank1	Type 17 T helper cell	Adaptive
+Ankrd22	Type 17 T helper cell	Adaptive
+B3galt2	Type 17 T helper cell	Adaptive
+Camta1	Type 17 T helper cell	Adaptive
+Ccr9	Type 17 T helper cell	Adaptive
+Cd40	Type 17 T helper cell	Adaptive
+Ift80	Type 17 T helper cell	Adaptive
+Asb2	Type 2 T helper cell	Adaptive
+Csrp2	Type 2 T helper cell	Adaptive
+Dapk1	Type 2 T helper cell	Adaptive
+Dlc1	Type 2 T helper cell	Adaptive
+Dnajc12	Type 2 T helper cell	Adaptive
+Dusp6	Type 2 T helper cell	Adaptive
+Gnai1	Type 2 T helper cell	Adaptive
+Nrp2	Type 2 T helper cell	Adaptive
+Osbpl1a	Type 2 T helper cell	Adaptive
+Pde4b	Type 2 T helper cell	Adaptive
+Phlda1	Type 2 T helper cell	Adaptive
+Pla2g4a	Type 2 T helper cell	Adaptive
+Rab27b	Type 2 T helper cell	Adaptive
+Rbms3	Type 2 T helper cell	Adaptive
+Rnf125	Type 2 T helper cell	Adaptive
+Tmprss3	Type 2 T helper cell	Adaptive
+Gata3	Type 2 T helper cell	Adaptive
+Birc5	Type 2 T helper cell	Adaptive
+Cdc25c	Type 2 T helper cell	Adaptive
+Cdc7	Type 2 T helper cell	Adaptive
+Cenpf	Type 2 T helper cell	Adaptive
+Cxcr6	Type 2 T helper cell	Adaptive
+Dhfr	Type 2 T helper cell	Adaptive
+Evi5	Type 2 T helper cell	Adaptive
+Hells	Type 2 T helper cell	Adaptive
+Abcd1	Activated dendritic cell	Innate
+C1qc	Activated dendritic cell	Innate
+Capg	Activated dendritic cell	Innate
+Ccl3	Activated dendritic cell	Innate
+Cd207	Activated dendritic cell	Innate
+Cd302	Activated dendritic cell	Innate
+Atp6v1a	Activated dendritic cell	Innate
+Bcl2l1	Activated dendritic cell	Innate
+C1qb	Activated dendritic cell	Innate
+Gm38393	Activated dendritic cell	Innate
+Spcs3	Activated dendritic cell	Innate
+Ccna1	Activated dendritic cell	Innate
+Nos2	Activated dendritic cell	Innate
+Sra1	Activated dendritic cell	Innate
+Trem1	Activated dendritic cell	Innate
+Treml1	Activated dendritic cell	Innate
+Rhoa	Activated dendritic cell	Innate
+Slc25a37	Activated dendritic cell	Innate
+Tnfsf14	Activated dendritic cell	Innate
+Treml4	Activated dendritic cell	Innate
+Xpo6	Activated dendritic cell	Innate
+Clec4b1	Activated dendritic cell	Innate
+Tnfaip2	Activated dendritic cell	Innate
+Ubd	Activated dendritic cell	Innate
+Actr3	Activated dendritic cell	Innate
+Rab1a	Activated dendritic cell	Innate
+Sla	Activated dendritic cell	Innate
+Slamf9	Activated dendritic cell	Innate
+Abat	CD56bright natural killer cell	Innate
+Cdhr1	CD56bright natural killer cell	Innate
+Dcaf12	CD56bright natural killer cell	Innate
+Dynll1	CD56bright natural killer cell	Innate
+Gpr137b	CD56bright natural killer cell	Innate
+Mlst8	CD56bright natural killer cell	Innate
+Elmod3	CD56bright natural killer cell	Innate
+Entpd5	CD56bright natural killer cell	Innate
+Cox7a2l	CD56bright natural killer cell	Innate
+Creb3l4	CD56bright natural killer cell	Innate
+Csf1	CD56bright natural killer cell	Innate
+Csnk2a2	CD56bright natural killer cell	Innate
+Stfa2	CD56bright natural killer cell	Innate
+Cstb	CD56bright natural killer cell	Innate
+Ctsd	CD56bright natural killer cell	Innate
+Fst	CD56bright natural killer cell	Innate
+Gata2	CD56bright natural killer cell	Innate
+Gmpr	CD56bright natural killer cell	Innate
+Hdc	CD56bright natural killer cell	Innate
+Hey1	CD56bright natural killer cell	Innate
+Hoxa1	CD56bright natural killer cell	Innate
+Hs2st1	CD56bright natural killer cell	Innate
+Hs3st1	CD56bright natural killer cell	Innate
+Bcl11b	CD56bright natural killer cell	Innate
+Cdh3	CD56bright natural killer cell	Innate
+Myl6b	CD56bright natural killer cell	Innate
+Naa16	CD56bright natural killer cell	Innate
+Cyp27b1	CD56bright natural killer cell	Innate
+Eif3m	CD56bright natural killer cell	Innate
+Cyp27a1	CD56dim natural killer cell	Innate
+Ddx55	CD56dim natural killer cell	Innate
+Dyrk2	CD56dim natural killer cell	Innate
+Notch3	CD56dim natural killer cell	Innate
+Gprc5c	CD56dim natural killer cell	Innate
+Grin1	CD56dim natural killer cell	Innate
+Porcn	CD56dim natural killer cell	Innate
+Psmc4	CD56dim natural killer cell	Innate
+Upp1	CD56dim natural killer cell	Innate
+Il21r	CD56dim natural killer cell	Innate
+Gipr	Eosinophil	Innate
+Lrmp	Eosinophil	Innate
+Fosb	Eosinophil	Innate
+Rrp12	Eosinophil	Innate
+Gpr183	Eosinophil	Innate
+Nr4a3	Eosinophil	Innate
+St3gal6	Eosinophil	Innate
+Depdc5	Eosinophil	Innate
+Pde6c	Eosinophil	Innate
+Pkd2l2	Eosinophil	Innate
+Gpr65	Eosinophil	Innate
+Il5ra	Eosinophil	Innate
+P2ry14	Eosinophil	Innate
+Dach1	Eosinophil	Innate
+Dapk2	Eosinophil	Innate
+Acadm	Immature dendritic cell	Innate
+Ahcyl1	Immature dendritic cell	Innate
+Aldh1a2	Immature dendritic cell	Innate
+Aldh3a2	Immature dendritic cell	Innate
+Aldh9a1	Immature dendritic cell	Innate
+Alox15	Immature dendritic cell	Innate
+Amt	Immature dendritic cell	Innate
+Arl1	Immature dendritic cell	Innate
+Atic	Immature dendritic cell	Innate
+4933400A11Rik	Immature dendritic cell	Innate
+Lilra6	Immature dendritic cell	Innate
+Rdx	Immature dendritic cell	Innate
+Rragd	Immature dendritic cell	Innate
+Tacstd2	Immature dendritic cell	Innate
+Inpp5f	Immature dendritic cell	Innate
+Rab38	Immature dendritic cell	Innate
+Plau	Immature dendritic cell	Innate
+Csf3r	Immature dendritic cell	Innate
+Slc18a2	Immature dendritic cell	Innate
+Ampd2	Immature dendritic cell	Innate
+Cltb	Immature dendritic cell	Innate
+Aif1	Macrophage	Innate
+Ccl6	Macrophage	Innate
+Cd300lb	Macrophage	Innate
+Cnr1	Macrophage	Innate
+Cnr2	Macrophage	Innate
+Eif4a1	Macrophage	Innate
+Fpr1	Macrophage	Innate
+Fpr-rs4	Macrophage	Innate
+Frat2	Macrophage	Innate
+Gpr27	Macrophage	Innate
+Rnase2a	Macrophage	Innate
+Ms4a2	Macrophage	Innate
+Basp1	Macrophage	Innate
+Igsf6	Macrophage	Innate
+Hk3	Macrophage	Innate
+Vnn1	Macrophage	Innate
+Fes	Macrophage	Innate
+Npl	Macrophage	Innate
+Fzd2	Macrophage	Innate
+Hnmt	Macrophage	Innate
+Slc15a3	Macrophage	Innate
+Cd4	Macrophage	Innate
+Frmd4a	Macrophage	Innate
+Crybb1	Macrophage	Innate
+Hrh1	Macrophage	Innate
+Wnt5b	Macrophage	Innate
+Adamts3	Mast cell	Innate
+Cpa3	Mast cell	Innate
+Cma1	Mast cell	Innate
+Ctsg	Mast cell	Innate
+Arhgap15	Mast cell	Innate
+Cpm	Mast cell	Innate
+Fcnb	Mast cell	Innate
+Ftl1	Mast cell	Innate
+Itga9	Mast cell	Innate
+Rnase2a	Mast cell	Innate
+S100a4	Mast cell	Innate
+Siglece	Mast cell	Innate
+Slc6a4	Mast cell	Innate
+Ptgs2	Mast cell	Innate
+Egr3	Mast cell	Innate
+Ccr2	MDSC	Innate
+Cd14	MDSC	Innate
+Cd2	MDSC	Innate
+Cd86	MDSC	Innate
+Cxcr4	MDSC	Innate
+Fcgr2b	MDSC	Innate
+Fcgr2b	MDSC	Innate
+Fcgr4	MDSC	Innate
+Fermt3	MDSC	Innate
+Gpsm3	MDSC	Innate
+Il18bp	MDSC	Innate
+Il4ra	MDSC	Innate
+Itgal	MDSC	Innate
+Itgam	MDSC	Innate
+Parvg	MDSC	Innate
+Psap	MDSC	Innate
+Ptger2	MDSC	Innate
+Ptges2	MDSC	Innate
+S100a8	MDSC	Innate
+Gm5849	MDSC	Innate
+Asgr2	Monocyte	Innate
+Cfp	Monocyte	Innate
+Asgr1	Monocyte	Innate
+Cd1d1	Monocyte	Innate
+Upk3a	Monocyte	Innate
+Actg1	Monocyte	Innate
+Anxa5	Monocyte	Innate
+Atp6v1b2	Monocyte	Innate
+Cfl1	Monocyte	Innate
+Dazap2	Monocyte	Innate
+Ctbs	Monocyte	Innate
+Hivep2	Monocyte	Innate
+Marcksl1	Monocyte	Innate
+Mbp	Monocyte	Innate
+Mmp15	Monocyte	Innate
+Pnpla6	Monocyte	Innate
+Tmbim6	Monocyte	Innate
+Pqbp1	Monocyte	Innate
+Tex264	Monocyte	Innate
+Ikzf1	Monocyte	Innate
+Akt3	Natural killer cell	Innate
+Axl	Natural killer cell	Innate
+Bst2	Natural killer cell	Innate
+Cdh2	Natural killer cell	Innate
+Crtam	Natural killer cell	Innate
+Csf2ra	Natural killer cell	Innate
+Ctsz	Natural killer cell	Innate
+Cyth1	Natural killer cell	Innate
+Daxx	Natural killer cell	Innate
+Dgkh	Natural killer cell	Innate
+Dll4	Natural killer cell	Innate
+Dpyd	Natural killer cell	Innate
+Erbb3	Natural killer cell	Innate
+F11r	Natural killer cell	Innate
+Fam49a	Natural killer cell	Innate
+Fasl	Natural killer cell	Innate
+Fcgr1	Natural killer cell	Innate
+Fn1	Natural killer cell	Innate
+Fstl1	Natural killer cell	Innate
+Fuca1	Natural killer cell	Innate
+Gbp3	Natural killer cell	Innate
+Gls2	Natural killer cell	Innate
+Grb2	Natural killer cell	Innate
+Lst1	Natural killer cell	Innate
+Bcl2	Natural killer cell	Innate
+Cdc5l	Natural killer cell	Innate
+Fgf18	Natural killer cell	Innate
+Fzr1	Natural killer cell	Innate
+Igfbp5	Natural killer cell	Innate
+Kank2	Natural killer cell	Innate
+Ldb3	Natural killer cell	Innate
+Btn2a2	Natural killer T cell	Innate
+Cd101	Natural killer T cell	Innate
+Cd109	Natural killer T cell	Innate
+Cnpy3	Natural killer T cell	Innate
+Cnpy4	Natural killer T cell	Innate
+Creb1	Natural killer T cell	Innate
+Crtc2	Natural killer T cell	Innate
+Crtc3	Natural killer T cell	Innate
+Csf2	Natural killer T cell	Innate
+Klri2	Natural killer T cell	Innate
+Fut4	Natural killer T cell	Innate
+Icam2	Natural killer T cell	Innate
+Lamp2	Natural killer T cell	Innate
+Lilra6	Natural killer T cell	Innate
+Klrg1	Natural killer T cell	Innate
+Hspa4	Natural killer T cell	Innate
+Hspb6	Natural killer T cell	Innate
+Ism2	Natural killer T cell	Innate
+Itih2	Natural killer T cell	Innate
+Kdm4c	Natural killer T cell	Innate
+Kirrel3	Natural killer T cell	Innate
+Sdcbp	Natural killer T cell	Innate
+Nfatc2ip	Natural killer T cell	Innate
+Mill2	Natural killer T cell	Innate
+Kir3dl1	Natural killer T cell	Innate
+Kir3dl1	Natural killer T cell	Innate
+Ncr1	Natural killer T cell	Innate
+Fosl1	Natural killer T cell	Innate
+Tslp	Natural killer T cell	Innate
+Slc7a7	Natural killer T cell	Innate
+Spp1	Natural killer T cell	Innate
+Trem2	Natural killer T cell	Innate
+Ubash3a	Natural killer T cell	Innate
+Ybx2	Natural killer T cell	Innate
+Ccdc88a	Natural killer T cell	Innate
+Clec1a	Natural killer T cell	Innate
+Thbd	Natural killer T cell	Innate
+Pdpn	Natural killer T cell	Innate
+Vcam1	Natural killer T cell	Innate
+Creb5	Neutrophil	Innate
+Cda	Neutrophil	Innate
+Chst15	Neutrophil	Innate
+Mmp25	Neutrophil	Innate
+Hal	Neutrophil	Innate
+Ffar2	Neutrophil	Innate
+Mak	Neutrophil	Innate
+Steap4	Neutrophil	Innate
+Mgam	Neutrophil	Innate
+Cxcr2	Neutrophil	Innate
+Vnn3	Neutrophil	Innate
+Cbx6	Plasmacytoid dendritic cell	Innate
+Dab2	Plasmacytoid dendritic cell	Innate
+Ddx17	Plasmacytoid dendritic cell	Innate
+Higd1a	Plasmacytoid dendritic cell	Innate
+Idh3a	Plasmacytoid dendritic cell	Innate
+Maged1	Plasmacytoid dendritic cell	Innate
+Nucb2	Plasmacytoid dendritic cell	Innate
+Ofd1	Plasmacytoid dendritic cell	Innate
+Ogt	Plasmacytoid dendritic cell	Innate
+Pdia4	Plasmacytoid dendritic cell	Innate
+Sertad2	Plasmacytoid dendritic cell	Innate
+Sirpa	Plasmacytoid dendritic cell	Innate
+Tmed2	Plasmacytoid dendritic cell	Innate
+Eng	Plasmacytoid dendritic cell	Innate
+Igf1	Plasmacytoid dendritic cell	Innate
+Itga2b	Plasmacytoid dendritic cell	Innate
+Gabarap	Plasmacytoid dendritic cell	Innate
+Gpx1	Plasmacytoid dendritic cell	Innate
+Krt23	Plasmacytoid dendritic cell	Innate
+Prok2	Plasmacytoid dendritic cell	Innate
+Ralb	Plasmacytoid dendritic cell	Innate
+Retnlb	Plasmacytoid dendritic cell	Innate
+Rnf141	Plasmacytoid dendritic cell	Innate
+Sec14l1	Plasmacytoid dendritic cell	Innate
+Emp3	Plasmacytoid dendritic cell	Innate
+Cd300ld	Plasmacytoid dendritic cell	Innate
+Abtb1	Plasmacytoid dendritic cell	Innate
+Klhl21	Plasmacytoid dendritic cell	Innate
+Phrf1	Plasmacytoid dendritic cell	Innate
