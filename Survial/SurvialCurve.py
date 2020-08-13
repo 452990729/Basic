@@ -16,6 +16,7 @@ from lifelines.statistics import logrank_test
 def HandleSurvalData(file_in, trim):
     pd_data = pd.read_csv(file_in, sep='\t', header=0, index_col=0)
     pd_out = pd_data.loc[:, ['OS', 'status']]
+    print pd_out
     if pd_out['OS'].median(0) > 200:
         label = 'days'
         if trim:
