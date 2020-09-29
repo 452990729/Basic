@@ -33,7 +33,7 @@ def MakePlot(pd_data, title, xlabel, ylabel, x, y, huge, swarm, violin, ylim, fi
     if swarm:
         sns.boxplot(x=swarm, y=y, data=pd_data, boxprops=boxprops,
                     medianprops=medianprops, whiskerprops=whiskerprops, capprops=capprops)
-        sns.swarmplot(x=swarm, y=y, data=pd_data, size=10)
+        sns.swarmplot(x=swarm, y=y, data=pd_data, size=30)
     elif violin:
         sns.violinplot(x=violin, y=y, data=pd_data)
     elif huge:
