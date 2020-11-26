@@ -37,6 +37,7 @@ def ExtractData(pd_data, list_id, colname, outfile, col=False):
         else:
             pd_out = pd_data.loc[list_id, :]
     pd_out = pd_out.dropna(axis=0, how='all')
+    pd_out = pd_out.fillna(0)
     pd_out.to_csv(outfile, sep='\t', header=True, index=True)
 
 def main():
