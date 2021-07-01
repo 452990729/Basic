@@ -49,8 +49,8 @@ from sklearn.preprocessing import MaxAbsScaler
 from sklearn.preprocessing import StandardScaler
 from sklearn.preprocessing import RobustScaler
 from sklearn.preprocessing import Normalizer
-from sklearn.preprocessing import QuantileTransformer
-from sklearn.preprocessing import PowerTransformer
+#from sklearn.preprocessing import QuantileTransformer
+#from sklearn.preprocessing import PowerTransformer
 
 
 def HandleData(file_in):

@@ -33,7 +33,7 @@ def PlotAll(pd_data, x, y, hue, ylim, figsize, outfile):
 #    axe.xaxis.set_ticklabels([])
     axe.yaxis.set_tick_params(width=3, length=10)
     if ylim:
-        min_v, max_v=[int(i) for i in re.split(':', ylim)]
+        min_v, max_v=[float(i) for i in re.split(':', ylim)]
         axe.set_ylim(min_v, max_v)
     axe.set_xlabel(x, size = 40)
     axe.set_ylabel(y, size = 40)
