@@ -9,6 +9,7 @@ from HTSeq import GFF_Reader
 
 BasePath = os.path.split(os.path.realpath(__file__))[0]
 Hg19 = BasePath+'/../../Database/Mode/hsa/hg19/hg19.gene.gtf'
+Hg38 = BasePath+'/../../Database/Mode/hsa/hg38/gencode.v37.annotation.gtf'
 mm = BasePath+'/../../Database/Mode/mm/mm.gene.gtf'
 
 def ReadGff(GFF):
@@ -24,6 +25,10 @@ def ReadData(file_in, header):
         pd_data = pd.read_csv(file_in, sep='\t', header=0, index_col=0)
     else:
         pd_data = pd.read_csv(file_in, sep='\t', header=None, index_col=0)
+    list_index = []
+    for index in pd_data.index:
+        list_index.append(re.split('\.', index)[0])
+    pd_data.index = list_index
     return pd_data
 
 def GetType(dict_gene, dict_ens, pd_data, list_tp):
@@ -87,12 +92,14 @@ def main():
     parser.add_argument('method', help='the method used extract/anno/switch', choices=['extract', 'anno', 'switch'], nargs=1)
     parser.add_argument('-m', help='input gene matrix, colomns one is Gene ids', required=True)
     parser.add_argument('-l', help='whether input gene matrix has header <<True>>', action='store_false')
-    parser.add_argument('-d', help='database<<hg19>>', choices=['hg19', 'mm'], default='hg19')
+    parser.add_argument('-d', help='database<<hg19>>', choices=['hg19', 'hg38', 'mm'], default='hg19')
     parser.add_argument('-t', help='extract data type', choices=['LncRNA', 'mRNA', 'sRNA', 'pseudogene', 'miRNA', 'rRNA', 'snoRNA'])
     argv=vars(parser.parse_args())
     pd_data = ReadData(argv['m'], argv['l'])
     if argv['d'] == 'hg19':
         dict_gene, dict_ens = ReadGff(Hg19)
+    elif argv['d'] == 'hg38':
+        dict_gene, dict_ens = ReadGff(Hg38)
     elif argv['d'] == 'mm':
         dict_gene, dict_ens = ReadGff(mm)
     if argv['method'][0] == 'extract':
