@@ -1,0 +1,30 @@
+set nocompatible
+filetype off
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+Plugin 'gmarik/Vundle.vim'
+Plugin 'tmhedberg/SimpylFold'
+Plugin 'vim-scripts/indentpython.vim'
+Plugin 'nvie/vim-flake8'
+Plugin 'jnurmine/Zenburn'
+Plugin 'fatih/vim-go'
+Plugin 'davidhalter/jedi-vim'
+Bundle 'SuperTab'
+call vundle#end()
+execute pathogen#infect()
+filetype plugin indent on
+
+set foldmethod=indent
+set foldlevel=99
+nnoremap <space> za
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
+set expandtab
+set fileformat=unix
+
+set encoding=utf-8
+set completeopt-=preview
+set backspace=indent,eol,start
+let python_highlight_all=1
+syntax on
