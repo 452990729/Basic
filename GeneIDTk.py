@@ -79,7 +79,7 @@ def Switch(dict_gene, dict_ens, pd_data):
             list_tmp.append(dict_in[key].attr[lb])
         else:
             list_tmp.append('NotFind')
-    pd_data.index = list_tmp
+    pd_data.index = [re.split('\.', i)[0] for i in list_tmp]
     return pd_data[pd_data.index != 'NotFind']
 
 def main():

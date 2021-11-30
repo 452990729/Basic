@@ -16,7 +16,6 @@ from lifelines.statistics import logrank_test
 def HandleSurvalData(file_in, trim):
     pd_data = pd.read_csv(file_in, sep='\t', header=0, index_col=0)
     pd_out = pd_data.loc[:, ['OS', 'status']]
-    print pd_out
     if pd_out['OS'].median(0) > 200:
         label = 'days'
         if trim:
@@ -43,7 +42,8 @@ def CalPairPvalue(pd1, pd2):
         return str(round(p_value, 2))
     else:
 #        return str(round(p_value, 2))
-        return 'n.s.'
+#        return 'n.s.'
+        return str(round(p_value, 2))
 #        return str(0.05)
 
 def MakePlot(pd_surval, lb, time_label, pd_class=False):
